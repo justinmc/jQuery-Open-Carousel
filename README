@@ -1,0 +1,35 @@
+Side Scrolling Image Bar
+
+Author:		Justin McCandless
+Created: 	8 July 2010
+Modified:	10 September 2010
+Original:	aiesecmichigan.com
+Support:	mcjustin@umich.edu
+
+www.justinmccandless.com
+
+
+*************
+Overview
+*************
+
+This creates an automatically scrolling div using JavaScript.  It also 
+allows the use of forward and back scroll buttons.  A scroll bar is
+possible but disabled in CSS.  Settings such as speed, scroll 
+frequency, and width are accessible as settings in the JavaScript
+file.
+
+
+*************
+Usage
+*************
+
+Feel free to use any of the code here however you like.  There is a lot
+of potential to modify this project to your needs, so go for it!  I'd
+appreciate credit if you think credit is due.
+
+
+*************
+Changelog
+*************
+

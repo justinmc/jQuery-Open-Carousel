@@ -1,0 +1,20 @@
+/**************************************
+Side Scrolling Image Bar
+Justin McCandless
+justinmccandless.com
+***************************************/
+
+body
+{
+	text-align: center;
+}
+
+/* Div that holds the scrolling content */
+.scroller
+{
+margin: 0 auto;
+position: relative;
+height: 227px; width: 900px;
+white-space: nowrap;
+overflow: hidden;
+}
