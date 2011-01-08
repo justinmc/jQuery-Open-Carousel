@@ -18,3 +18,23 @@ height: 227px; width: 900px;
 white-space: nowrap;
 overflow: hidden;
 }
+
+/* Same thing but for the jquery version */
+.scrollerJQ
+{
+margin: 0 auto;
+position: relative;
+height: 227px; width: 2700px;
+white-space: nowrap;
+overflow: hidden;
+}
+
+/* For jquery version, scrollerJQ moves, but only what is under window is visible */
+.window
+{
+margin: 0 auto;
+position: relative;
+height: 227px; width: 900px;
+white-space: nowrap;
+overflow: hidden;
+}

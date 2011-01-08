@@ -1,15 +1,15 @@
 /***************************************************************************
  Side Scrolling Image Bar
+ JavaScript Version
  Justin McCandless
  www.justinmccandless.com
  ***************************************************************************/
 
-
 // Settings
-var speed = 10					// speed to change frames
+var speed = 10				// speed to change frames
 var speedReset = speed * 3		// faster speed to recycle to beginning/end
 var frequency = 6 * 1000  		// how often frames change, milliseconds
-var width = 900  				// width of each frame to scroll, pixels
+var width = 900  			// width of each frame to scroll, pixels
 
 // Initialize
 var i = 0;
