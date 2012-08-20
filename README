@@ -1,10 +1,13 @@
 Side Scrolling Image Bar
 
-Author:		Justin McCandless
-Created: 	8 July 2010
-Modified:	07 January 2011
-Original:	aiesecmichigan.com
-Support:	mcjustin@umich.edu
+Author:			Justin McCandless
+Created: 		8 July 2010
+Modified:		11 August 2012
+Blog Post 1:	http://justinmccandless.com/blog/Scrolling+Image+Bar
+Blog Post 2:	http://www.justinmccandless.com/blog/An+Updated+Scolling+Image+Bar+jQuery+Carousel
+Demo:			http://justinmccandless.com/demos/Scrolling-Image-Bar/index.html
+Support:		justinjmccandless@gmail.com
+
 
 www.justinmccandless.com
 
@@ -13,19 +16,87 @@ www.justinmccandless.com
 Overview
 *************
 
-This project is an automatically scrolling div.  I wrote two 
-examples, one using just JavaScript and one using jQuery.  Both
-allow the use of forward and back scroll buttons.  A scroll bar is
-possible but disabled in CSS.  Settings such as speed, scroll 
-frequency, and width are accessible as settings in the js files.
-
+This project is a carousel display in jQuery.  A scroll bar is
+possible but disabled in CSS.  Settings such as speed and scroll 
+frequency can be changed using data attributes.
 
 *************
 Usage
 *************
 
-Feel free to use any of the code here however you like.  There is a lot
-of potential to modify this project to your needs, so go for it!  I'd
-appreciate credit if you think credit is due.
+This project consists of the carousel itself, an svg indicator 
+to help with navigation, and left/right buttons.  The last two 
+are optional, so let's start with setting up the basic carousel
+by itself.  Be sure to check out the live demo (link at the top) 
+to see all of this in action.
+
+The carousel itself is just your content, a container div, and a
+window div.  The window div has the class "imagebar_window", and
+any content below it is visible while other content is hidden.
+The two important CSS properties here are white-space: nowrap;
+and overflow: hidden;.  Other than that, just set this up where
+you want your carousel content to appear.
+
+The container div has the class "imagebar_window_slides", and it
+needs to contain all of your content horizontally from left to
+right.  Give it the CSS property white-space: nowrap; as well,
+and be sure to set the width to accomodate all of your content
+without wrapping.
+
+Each "slide" that will appear in the carousel should have the
+class "imagebar_window_slide" and the id "imagebar_window_slide[n]"
+where [n] should be replaced with the number slide, starting 
+from zero.  These can be any block-level object, such as a div
+or an img.  You might want to use float: left; on each of these
+in order to keep them positioned right next to eachother.
 
 
+<div class="imagebar_window">
+	<div class="imagebar_window_slides">
+		<img src="image1.jpg" class="imagebar_window_slide" id="imagebar_window_slide0">
+		<img src="image2.jpg" class="imagebar_window_slide" id="imagebar_window_slide1">
+		<img src="image3.jpg" class="imagebar_window_slide" id="imagebar_window_slide2">
+	</div>
+</div>
+		
+
+As mentioned, indicator circles can also be used to show 
+which slide is currently active and its position among 
+the total number of slides.  Just set a class of 
+"imagebar_indicators_circle" and an id of
+"imagebar_indicators_circle[n]", where [n] is the number
+of the indicator starting from zero.  I used a simple SVG
+indicator with an id of "imagebar_indicators" on the svg
+object, though thumbnails or any other clickable object 
+could also be used to scroll to a specific slide.
+
+
+<svg id="imagebar_indicators" xmlns="http://www.w3.org/2000/svg" version="1.1">
+   	<circle class="imagebar_indicators_circle" id="imagebar_indicators_circle0" cx="126" cy="20" r="6" stroke="#afafaf" stroke-width="2" fill="#ffffff" />
+   	<circle class="imagebar_indicators_circle" id="imagebar_indicators_circle1" cx="146" cy="20" r="6" stroke="#afafaf" stroke-width="2" fill="#ffffff" />
+   	<circle class="imagebar_indicators_circle" id="imagebar_indicators_circle2" cx="166" cy="20" r="6" stroke="#afafaf" stroke-width="2" fill="#ffffff" />
+</svg>
+
+
+Lastly, to provide forward/back buttons, just add the
+class "imagebar_button_left" or "imagebar_button_right"
+to any clickable object and it will transition in
+whichever direction you click.  It will correctly wrap
+back around to the start/finish if you go too far.
+
+
+<b class="imagebar_button_left">Left</b> | 
+<b class="imagebar_button_right">Right</b>
+
+
+*****************
+Configuration
+*****************
+
+You can change the default transition speed, transition
+frequency, and/or animation type by passing a simple
+data attribute in the imagebar_window_slides div.
+
+data-imagebar-speed = the duration of the transition, milliseconds
+data-imagebar-frequency = the time between each transition, milliseconds 
+data-imagebar-animation = "fade" will give a fading transition, othwerise scrolling is used

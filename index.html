@@ -8,37 +8,32 @@ justinmccandless.com
 "http://www.w3.org/TR/html4/loose.dtd">
 
 <html>
-
-<head>
-
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Side Scrolling JavaScript Bar Example - By Justin McCandless</title>
-<link rel = stylesheet type = "text/css" href = "style.css">
-<script type="text/javascript" src="jquery-1.3.2.js"></script>
-<script type="text/javascript" src="scroller.js"></script> <!-- Here is the js for the regular scroller -->
-<script type="text/javascript" src="scrollerjquery.js"></script> <!-- And here is the js for the jquery scroller -->
-
-</head>
-
-<body onload = "autoScroll('scrollMe')"> <!-- This onload is only used for the regular js scroller -->
- 
-<h1>Side Scrolling JavaScript Bar Example</h1>
-<div class = "scroller" id = "scrollMe"><img src = "image1.jpg" alt = "1"><img src = "image2.jpg" alt = "2"><img src = "image3.jpg" alt = "3"></div>
-<br>
-<b onclick = "scrollL('scrollMe')">Left</b> | 
-<b onclick = "scrollR('scrollMe')">Right</b>
-<br><br>
-<br><br>
-
-<h1>Side Scrolling jQuery Bar Example</h1>
-<div class = "window">
-<div class = "scrollerJQ"><img src = "image1.jpg" alt = "1"><img src = "image2.jpg" alt = "2"><img src = "image3.jpg" alt = "3"></div>
-</div>
-<br>
-<b class="left">Left</b> | 
-<b class="right">Right</b>
-<br><br><br><br>
-<br><br><br><br>
-</body>
-
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>Side Scrolling JavaScript Bar Example - By Justin McCandless</title>
+		<link rel = stylesheet type = "text/css" href = "style.css">
+		<script type="text/javascript" src="jquery-1.3.2.js"></script>
+		<script type="text/javascript" src="carousel.js"></script> <!-- Here is the js for the carousel -->	
+	</head>
+	<body>
+		<h1>Scrolling Carousel</h1>
+		github: <a href="http://github.com/justinmc/Scrolling-Image-Bar">github.com/justinmc/Scrolling-Image-Bar</a>
+		
+		<div class="imagebar_window">
+			<div class="imagebar_window_slides">
+				<img src="image1.jpg" class="imagebar_window_slide" id="imagebar_window_slide0">
+				<img src="image2.jpg" class="imagebar_window_slide" id="imagebar_window_slide1">
+				<img src="image3.jpg" class="imagebar_window_slide" id="imagebar_window_slide2">
+			</div>
+		</div>
+		<br />
+		<svg id="imagebar_indicators" xmlns="http://www.w3.org/2000/svg" version="1.1">
+		   	<circle class="imagebar_indicators_circle" id="imagebar_indicators_circle0" cx="126" cy="20" r="6" stroke="#afafaf" stroke-width="2" fill="#ffffff" />
+		   	<circle class="imagebar_indicators_circle" id="imagebar_indicators_circle1" cx="146" cy="20" r="6" stroke="#afafaf" stroke-width="2" fill="#ffffff" />
+		   	<circle class="imagebar_indicators_circle" id="imagebar_indicators_circle2" cx="166" cy="20" r="6" stroke="#afafaf" stroke-width="2" fill="#ffffff" />
+		</svg>
+		<br />
+		<b class="imagebar_button_left">Left</b> | 
+		<b class="imagebar_button_right">Right</b>
+	</body>
 </html>

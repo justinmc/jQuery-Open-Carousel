@@ -10,7 +10,17 @@ body
 }
 
 /* Div that holds the scrolling content */
-.scroller
+.imagebar_window_slides
+{
+margin: 0 auto;
+position: relative;
+width: 2700px;
+white-space: nowrap;
+overflow: hidden;
+}
+
+/* Only what is under this window is visible */
+.imagebar_window
 {
 margin: 0 auto;
 position: relative;
@@ -19,22 +29,20 @@ white-space: nowrap;
 overflow: hidden;
 }
 
-/* Same thing but for the jquery version */
-.scrollerJQ
-{
-margin: 0 auto;
-position: relative;
-height: 227px; width: 2700px;
-white-space: nowrap;
-overflow: hidden;
+/* Each frame */
+.imagebar_window_slide {
+	float: left;
 }
 
-/* For jquery version, scrollerJQ moves, but only what is under window is visible */
-.window
-{
-margin: 0 auto;
-position: relative;
-height: 227px; width: 900px;
-white-space: nowrap;
-overflow: hidden;
+/* Style for the buttons */
+.imagebar_button_left {
+	cursor: pointer;
+}
+.imagebar_button_right {
+	cursor: pointer;
+}
+
+/* Style for the indicators */
+.imagebar_indicators_circle {
+	cursor: pointer;
 }
