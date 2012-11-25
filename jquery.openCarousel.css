@@ -1,0 +1,40 @@
+/**************************************
+jQuery Open Carousel
+Justin McCandless
+justinmccandless.com
+
+This is the necessary css for Open Carousel
+Include jquery.openCarousel.js and jquery.openCarousel.css in your projects
+***************************************/
+
+.ocarousel {
+    display: none;
+}
+    .ocarousel_window {
+        overflow: hidden;
+        white-space: nowrap;
+        /* default size */
+        width: 100%;
+        height: 200px;
+    }
+        .ocarousel_window_slides {
+            margin: 0 auto;
+            overflow: hidden;
+            position: relative;
+            float: left;
+        }
+        .ocarousel_window_slides > * {
+            position: relative;
+            display: inline-block;
+            vertical-align: top;
+        }
+.ocarousel_indicators {
+    width: 100%;
+}
+.ocarousel_indicators svg {
+    cursor: pointer;
+    height: 50px;
+    margin: 0 auto;
+    width: 100%;
+}
+
