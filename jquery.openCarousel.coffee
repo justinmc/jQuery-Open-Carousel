@@ -45,11 +45,11 @@ class Ocarousel
             # add container for the slides
             @ocarousel_container = document.createElement("div");
             @ocarousel_container.setAttribute("class", "ocarousel_window_slides");
-            @ocarousel_window.html("");
-            $(@ocarousel_window).append(@ocarousel_container);
             $(@frames).each (i) ->
                 $(me.ocarousel_container).append($(this));
-
+            @ocarousel_window.html("");
+            $(@ocarousel_window).append(@ocarousel_container);
+            
             # let everything be visible
             $(@ocarousel).show();
 
