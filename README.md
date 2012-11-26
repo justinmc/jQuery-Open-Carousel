@@ -128,7 +128,7 @@ Open Carousel is also highly configurable using just data attributes.  Here are 
     <td>spacing between indicators</td>
   </tr>
   <tr>
-    <td>indicator_cy</td>
+    <td>indicator-cy</td>
     <td>20</td>
     <td>y position of indicator circles</td>
   </tr>
