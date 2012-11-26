@@ -1,16 +1,33 @@
-Side Scrolling Image Bar
+# Side Scrolling Image Bar
 
-Author:			    Justin McCandless
-Created: 		    8 July 2010
-Last Updated:	    25 November 2012
-Latest Blog Post:   
-Older Blog Post:	http://justinmccandless.com/blog/Scrolling+Image+Bar
-Older Blog Post:	http://www.justinmccandless.com/blog/An+Updated+Scolling+Image+Bar+jQuery+Carousel
-Demo:			    http://justinmccandless.com/demos/Scrolling-Image-Bar/index.html
-Contact:		    justinjmccandless@gmail.com
+<table>
+  <tr>
+    <td>Author:</td>
+    <td>Justin McCandless</td>
+  </tr>
+  <tr>
+    <td>Latest Blog Post:</td>
+    <td>todo</td>
+  </tr>
+  <tr>
+    <td>Older Blog Post:</td>
+    <td>http://www.justinmccandless.com/blog/An+Updated+Scolling+Image+Bar+jQuery+Carousel</td>
+  </tr>
+  <tr>
+    <td>Older Blog Post:</td>
+    <td>http://justinmccandless.com/blog/Scrolling+Image+Bar</td>
+  </tr>
+  <tr>
+    <td>Demo:</td>
+    <td>http://justinmccandless.com/demos/Scrolling-Image-Bar/index.html</td>
+  </tr>
+  <tr>
+    <td>Contact:</td>
+    <td>justinjmccandless@gmail.com</td>
+  </tr>
+</table>
 
 www.justinmccandless.com
-
 
 ## Overview
 
@@ -24,7 +41,7 @@ Be sure to include jQuery, the Open Carousel javascript file (jQuery.openCarouse
 
 In its most simplest case, this carousel will just automatically rotate the position of different objects placed within a div.  A setup of this might look like:
 
-
+```html
 <div class="ocarousel">
     <div class="ocarousel_window">
     
@@ -35,7 +52,7 @@ In its most simplest case, this carousel will just automatically rotate the posi
     
     </div>
 </div>
-
+```
 
 This simple setup will immediately start working (don't forget to include the Open Carousel files!).  The ".ocarousel" div is just a wrapper to separate different instances of Open Carousel.  The ".ocarousel_window" is the view inside of which your slides are moved.  You should style this to match your content in a way you find attractive!
 
@@ -58,9 +75,11 @@ last
 
 You can also very easily create a line of SVG circles that fill up to represent which slide is currently active, all linked to their corresponding slide.  Simply include the following div within the parent ".ocarousel" div, and everything will be set up for you automatically:
 
+```html
 <div class="ocarousel_indicators">
 
 </div>
+```
 
 ## Configuration
 
