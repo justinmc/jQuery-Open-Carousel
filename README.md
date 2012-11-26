@@ -113,17 +113,17 @@ Open Carousel is also highly configurable using just data attributes.  Here are 
     <td>scroll to the beginning when reaching this many slides before the end</td>
   </tr>
   <tr>
-    <td>indicator_fill</td>
+    <td>indicator-fill</td>
     <td>#ffffff</td>
     <td>inactive fill color of indicator circles</td>
   </tr>
   <tr>
-    <td>indicator_r</td>
+    <td>indicator-r</td>
     <td>6</td>
     <td>radius of indicator circles</td>
   </tr>
   <tr>
-    <td>indicator_spacing</td>
+    <td>indicator-spacing</td>
     <td>6</td>
     <td>spacing between indicators</td>
   </tr>
@@ -133,21 +133,25 @@ Open Carousel is also highly configurable using just data attributes.  Here are 
     <td>y position of indicator circles</td>
   </tr>
   <tr>
-    <td>indicator_stroke</td>
+    <td>indicator-stroke</td>
     <td>#afafaf</td>
     <td>stroke color of indicator cirlces</td>
   </tr>
   <tr>
-    <td>indicator_strokewidth</td>
+    <td>indicator-strokewidth</td>
     <td>2</td>
     <td>stroke width of indicator circles</td>
   </tr>
 </table>
 
-To use them, pass a data attribute on the parent ".ocarousel" div with the form: "data-ocarousel-name-with-dashes".  So if I wanted to set the indicator fill to red, I could pass:
+To use them, pass a data attribute on the parent ".ocarousel" div with the form: "data-ocarousel-name".  So if I wanted to set the indicator fill to red, my main div would look like
 
-```
-data-ocarousel-indicator-fill="red"
+```html
+<div class="ocarousel" data-ocarousel-indicator-fill="red">
+
+...
+
+</div>
 ```
 
 ## Hacking
