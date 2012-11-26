@@ -3,7 +3,7 @@
 <table>
   <tr>
     <td>Author:</td>
-    <td>Justin McCandless</td>
+    <td>Justin McCandless (www.justinmccandless.com)</td>
   </tr>
   <tr>
     <td>Latest Blog Post:</td>
@@ -26,8 +26,6 @@
     <td>justinjmccandless@gmail.com</td>
   </tr>
 </table>
-
-www.justinmccandless.com
 
 ## Overview
 
@@ -76,28 +74,75 @@ Simply include the "data-ocarousel-link" attribute on any clickable navigation e
 You can also very easily create a line of SVG circles that fill up to represent which slide is currently active, all linked to their corresponding slide.  Simply include the following div within the parent ".ocarousel" div, and everything will be set up for you automatically:
 
 ```html
-<div class="ocarousel_indicators">
-
-</div>
+<div class="ocarousel_indicators"></div>
 ```
 
 ## Configuration
 
 Open Carousel is also highly configurable using just data attributes.  Here are all of the possible settings, with their default values and descriptions.
 
-<pre>
-speed: .5 * 1000                how long each transition is, milliseconds
-period: 4 * 1000                time between frame changes, milliseconds (Infinity will prevent autoscrolling altogether)
-transition: "scroll"            type of transition animation ("scroll" or "fade")
-perscroll: 1                    number of slides to pass over for each scroll
-wrapearly: 0                    scroll to the beginning when reaching this many slides before the end
-indicator_fill: "#ffffff"       inactive fill color of indicator circles
-indicator_r: 6                  radius of indicator circles
-indicator_spacing: 6            spacing between indicators
-indicator_cy: 20                y position of indicator circles
-indicator_stroke: "#afafaf"     stroke color of indicator cirlces
-indicator_strokewidth: "2"      stroke width of indicator circles
-</pre>
+<table>
+  <tr>
+    <th>Data Attribute</th>
+    <th>Default Value</th>
+    <th>Definition</th>
+  </tr>
+  <tr>
+    <td>speed</td>
+    <td>.5 * 1000</td>
+    <td>how long each transition is, milliseconds</td>
+  </tr>
+  <tr>
+    <td>period</td>
+    <td>4 * 1000</td>
+    <td>time between frame changes, milliseconds (Infinity will prevent autoscrolling altogether)</td>
+  </tr>
+  <tr>
+    <td>transition</td>
+    <td>scroll</td>
+    <td>type of transition animation ("scroll" or "fade")</td>
+  </tr>
+  <tr>
+    <td>perscroll</td>
+    <td>1</td>
+    <td>number of slides to pass over for each scroll</td>
+  </tr>
+  <tr>
+    <td>wrapearly</td>
+    <td>0</td>
+    <td>scroll to the beginning when reaching this many slides before the end</td>
+  </tr>
+  <tr>
+    <td>indicator_fill</td>
+    <td>#ffffff</td>
+    <td>inactive fill color of indicator circles</td>
+  </tr>
+  <tr>
+    <td>indicator_r</td>
+    <td>6</td>
+    <td>radius of indicator circles</td>
+  </tr>
+  <tr>
+    <td>indicator_spacing</td>
+    <td>6</td>
+    <td>spacing between indicators</td>
+  </tr>
+  <tr>
+    <td>indicator_cy</td>
+    <td>20</td>
+    <td>y position of indicator circles</td>
+  </tr>
+  <tr>
+    <td>indicator_stroke</td>
+    <td>#afafaf</td>
+    <td>stroke color of indicator cirlces</td>
+  </tr>
+  <tr>
+    <td>indicator_strokewidth</td>
+    <td>2</td>
+    <td>stroke width of indicator circles</td>
+  </tr>
+</table>
 
 To use them, pass a data attribute on the parent ".ocarousel" div with the form: "data-ocarousel-name-with-dashes".  So if I wanted to set the indicator fill to red, I could pass:
 
