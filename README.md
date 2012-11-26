@@ -1,4 +1,4 @@
-# Side Scrolling Image Bar
+# jQuery Open Carousel
 
 <table>
   <tr>
