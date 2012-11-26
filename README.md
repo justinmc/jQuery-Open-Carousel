@@ -15,11 +15,11 @@
   </tr>
   <tr>
     <td>Older Blog Post:</td>
-    <td>http://justinmccandless.com/blog/Scrolling+Image+Bar</td>
+    <td>http://www.justinmccandless.com/blog/Scrolling+Image+Bar</td>
   </tr>
   <tr>
     <td>Demo:</td>
-    <td>http://justinmccandless.com/demos/Scrolling-Image-Bar/index.html</td>
+    <td>http://www.justinmccandless.com/demos/Scrolling-Image-Bar/index.html</td>
   </tr>
   <tr>
     <td>Contact:</td>
@@ -66,10 +66,10 @@ Many people will want to include forward/back buttons to allow their users to na
 
 Simply include the "data-ocarousel-link" attribute on any clickable navigation element you want.  Set it equal to the index of the slide you want to link to (starting from 0), or one of the following:
 
-left
-right
-first
-last
+* left
+* right
+* first
+* last
 
 ### Indicator Bubbles
 
@@ -85,6 +85,7 @@ You can also very easily create a line of SVG circles that fill up to represent 
 
 Open Carousel is also highly configurable using just data attributes.  Here are all of the possible settings, with their default values and descriptions.
 
+<pre>
 speed: .5 * 1000                how long each transition is, milliseconds
 period: 4 * 1000                time between frame changes, milliseconds (Infinity will prevent autoscrolling altogether)
 transition: "scroll"            type of transition animation ("scroll" or "fade")
@@ -96,12 +97,13 @@ indicator_spacing: 6            spacing between indicators
 indicator_cy: 20                y position of indicator circles
 indicator_stroke: "#afafaf"     stroke color of indicator cirlces
 indicator_strokewidth: "2"      stroke width of indicator circles
-
+</pre>
 
 To use them, pass a data attribute on the parent ".ocarousel" div with the form: "data-ocarousel-name-with-dashes".  So if I wanted to set the indicator fill to red, I could pass:
 
- data-ocarousel-indicator-fill="red"
-
+```
+data-ocarousel-indicator-fill="red"
+```
 
 ## Hacking
 
