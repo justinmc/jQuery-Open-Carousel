@@ -44,11 +44,11 @@ class Ocarousel
         if @frames.length > 1
             # add container for the slides
             @ocarousel_container = document.createElement("div");
-            @ocarousel_container.setAttribute("class", "ocarousel_window_slides");
+            @ocarousel_container.className =  "ocarousel_window_slides";
             $(@frames).each (i) ->
-                $(me.ocarousel_container).append($(this));
+                me.ocarousel_container.appendChild(this);
             @ocarousel_window.html("");
-            $(@ocarousel_window).append(@ocarousel_container);
+            $(@ocarousel_window).get(0).appendChild(@ocarousel_container);
             
             # let everything be visible
             $(@ocarousel).show();
@@ -72,7 +72,7 @@ class Ocarousel
                 # setup the svg itself
                 indicators_svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
                 indicators_svg.setAttribute("version", "1.1");
-                $(indicators_container).append(indicators_svg);
+                $(indicators_container).get(0).appendChild(indicators_svg);
 
                 # setup the circle indicators
                 @indicators = []
@@ -80,7 +80,7 @@ class Ocarousel
                 for i in [0..@frames.length - 1]
                     # create an indicator
                     indicator = document.createElementNS("http://www.w3.org/2000/svg", "circle");
-                    indicator.setAttribute("class", "ocarousel_link");
+                    indicator.className = "ocarousel_link";
                     indicator.setAttribute("data-ocarousel-link", i);
                     indicator.setAttribute("cx", cx);
                     indicator.setAttribute("cy", @settings.indicator_cy);
@@ -90,7 +90,7 @@ class Ocarousel
                     indicator.setAttribute("fill", if i is 0 then @settings.indicator_stroke else @settings.indicator_fill);
 
                     # append it to the DOM and our array
-                    $(indicators_svg).append(indicator);
+                    indicators_svg.appendChild(indicator);
                     @indicators.push(indicator);
 
                     # set its index as a data setAttribute

@@ -58,12 +58,12 @@ Include jquery.openCarousel.js and jquery.openCarousel.css in your projects
       indicators_container = $(this.ocarousel).children(".ocarousel_indicators");
       if (this.frames.length > 1) {
         this.ocarousel_container = document.createElement("div");
-        this.ocarousel_container.setAttribute("class", "ocarousel_window_slides");
+        this.ocarousel_container.className = "ocarousel_window_slides";
         $(this.frames).each(function(i) {
-          return $(me.ocarousel_container).append($(this));
+          return me.ocarousel_container.appendChild(this);
         });
         this.ocarousel_window.html("");
-        $(this.ocarousel_window).append(this.ocarousel_container);
+        $(this.ocarousel_window).get(0).appendChild(this.ocarousel_container);
         $(this.ocarousel).show();
         this.settings = {};
         this.settings.speed = (_ref = $(this.ocarousel).data('ocarousel-speed')) != null ? _ref : Ocarousel.settings.speed;
@@ -80,12 +80,12 @@ Include jquery.openCarousel.js and jquery.openCarousel.css in your projects
         if (indicators_container != null) {
           indicators_svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
           indicators_svg.setAttribute("version", "1.1");
-          $(indicators_container).append(indicators_svg);
+          $(indicators_container).get(0).appendChild(indicators_svg);
           this.indicators = [];
           cx = $(indicators_container).width() / 2 - this.settings.indicator_r * this.frames.length - this.settings.indicator_spacing * this.frames.length / 2;
           for (i = _i = 0, _ref11 = this.frames.length - 1; 0 <= _ref11 ? _i <= _ref11 : _i >= _ref11; i = 0 <= _ref11 ? ++_i : --_i) {
             indicator = document.createElementNS("http://www.w3.org/2000/svg", "circle");
-            indicator.setAttribute("class", "ocarousel_link");
+            indicator.className = "ocarousel_link";
             indicator.setAttribute("data-ocarousel-link", i);
             indicator.setAttribute("cx", cx);
             indicator.setAttribute("cy", this.settings.indicator_cy);
@@ -93,7 +93,7 @@ Include jquery.openCarousel.js and jquery.openCarousel.css in your projects
             indicator.setAttribute("stroke", this.settings.indicator_stroke);
             indicator.setAttribute("stroke-width", this.settings.indicator_strokewidth);
             indicator.setAttribute("fill", i === 0 ? this.settings.indicator_stroke : this.settings.indicator_fill);
-            $(indicators_svg).append(indicator);
+            indicators_svg.appendChild(indicator);
             this.indicators.push(indicator);
             $(indicator).data("ocarousel_index", i);
             cx = cx + this.settings.indicator_r * 2 + this.settings.indicator_spacing;
