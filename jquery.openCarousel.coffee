@@ -24,6 +24,7 @@ class Ocarousel
         transition: "scroll"            # type of transition animation
         perscroll: 1                    # number of slides to pass over for each scroll
         wrapearly: 0                    # scroll to the beginning when reaching this many slides before the end
+        shuffle: false					# setting to true will randomize the order of slides, false will keep the order given in html
         indicator_fill: "#ffffff"       # inactive fill color of indicator circles
         indicator_r: 6                  # radius of indicator circles
         indicator_spacing: 6            # spacing between indicators
@@ -42,9 +43,27 @@ class Ocarousel
 
         # if there are 0 or 1 frames, then the carousel should not do anything!
         if @frames.length > 1
+            # get dynamic settings from data attributes
+            @settings = {}
+            @settings.speed = $(@ocarousel).data('ocarousel-speed') ? Ocarousel.settings.speed
+            @settings.period = $(@ocarousel).data('ocarousel-period') ? Ocarousel.settings.period
+            @settings.transition = $(@ocarousel).data('ocarousel-transition') ? Ocarousel.settings.transition
+            @settings.perscroll = $(@ocarousel).data('ocarousel-perscroll') ? Ocarousel.settings.perscroll
+            @settings.wrapearly = $(@ocarousel).data('ocarousel-wrapearly') ? Ocarousel.settings.wrapearly
+            @settings.shuffle = $(@ocarousel).data('ocarousel-shuffle') ? Ocarousel.settings.shuffle
+            @settings.indicator_fill = $(@ocarousel).data('ocarousel-indicator-fill') ? Ocarousel.settings.indicator_fill
+            @settings.indicator_r = $(@ocarousel).data('ocarousel-indicator-r') ? Ocarousel.settings.indicator_r
+            @settings.indicator_spacing = $(@ocarousel).data('ocarousel-indicator-spacing') ? Ocarousel.settings.indicator_spacing
+            @settings.indicator_cy = $(@ocarousel).data('ocarousel-indicator-cy') ? Ocarousel.settings.indicator_cy
+            @settings.indicator_stroke = $(@ocarousel).data('ocarousel-indicator-stroke') ? Ocarousel.settings.indicator_stroke
+            @settings.indicator_strokewidth = $(@ocarousel).data('ocarousel-indicator-strokewidth') ? Ocarousel.settings.indicator_strokewidth
+            
             # add container for the slides
             @ocarousel_container = document.createElement("div");
-            @ocarousel_container.className =  "ocarousel_window_slides";
+            @ocarousel_container.className =  "ocarousel_window_slides";            
+            if @settings.shuffle is true
+                @frames.sort () ->
+	                return Math.round( Math.random() ) - 0.5
             $(@frames).each (i) ->
                 me.ocarousel_container.appendChild(this);
             @ocarousel_window.html("");
@@ -53,22 +72,8 @@ class Ocarousel
             # let everything be visible
             $(@ocarousel).show();
 
-            # get dynamic settings from data attributes
-            @settings = {}
-            @settings.speed = $(@ocarousel).data('ocarousel-speed') ? Ocarousel.settings.speed
-            @settings.period = $(@ocarousel).data('ocarousel-period') ? Ocarousel.settings.period
-            @settings.transition = $(@ocarousel).data('ocarousel-transition') ? Ocarousel.settings.transition
-            @settings.wrapearly = $(@ocarousel).data('ocarousel-wrapearly') ? Ocarousel.settings.wrapearly
-            @settings.perscroll = $(@ocarousel).data('ocarousel-perscroll') ? Ocarousel.settings.perscroll
-            @settings.indicator_fill = $(@ocarousel).data('ocarousel-indicator-fill') ? Ocarousel.settings.indicator_fill
-            @settings.indicator_r = $(@ocarousel).data('ocarousel-indicator-r') ? Ocarousel.settings.indicator_r
-            @settings.indicator_spacing = $(@ocarousel).data('ocarousel-indicator-spacing') ? Ocarousel.settings.indicator_spacing
-            @settings.indicator_cy = $(@ocarousel).data('ocarousel-indicator-cy') ? Ocarousel.settings.indicator_cy
-            @settings.indicator_stroke = $(@ocarousel).data('ocarousel-indicator-stroke') ? Ocarousel.settings.indicator_stroke
-            @settings.indicator_strokewidth = $(@ocarousel).data('ocarousel-indicator-strokewidth') ? Ocarousel.settings.indicator_strokewidth
-
             # setup indicators if the user provided a div
-            if indicators_container?
+            if indicators_container? && document.implementation.hasFeature("http://www.w3.org/TR/SVG11/feature#BasicStructure", "1.1")
                 # setup the svg itself
                 indicators_svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
                 indicators_svg.setAttribute("version", "1.1");
