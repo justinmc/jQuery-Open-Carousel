@@ -18,23 +18,25 @@ Include jquery.openCarousel.js and jquery.openCarousel.css in your projects
         height: 200px;
     }
         .ocarousel_window_slides {
+            position: relative;
             margin: 0 auto;
             overflow: hidden;
-            position: relative;
-            float: left;
+            width: 10000px;
+            white-space: nowrap;
         }
-        .ocarousel_window_slides > * {
-            position: relative;
-            display: inline-block;
-            vertical-align: top;
+        .ocarousel_window_slides * {
+            float: left;
+            white-space: normal;
         }
 .ocarousel_indicators {
     width: 100%;
 }
 .ocarousel_indicators svg {
-    cursor: pointer;
     height: 50px;
     margin: 0 auto;
     width: 100%;
+}
+.ocarousel_indicators svg circle {
+    cursor: pointer;
 }
 

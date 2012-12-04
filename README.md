@@ -113,6 +113,11 @@ Open Carousel is also highly configurable using just data attributes.  Here are 
     <td>scroll to the beginning when reaching this many slides before the end</td>
   </tr>
   <tr>
+    <td>shuffle</td>
+    <td>false</td>
+    <td>setting to true will randomize the order of slides, false will keep the order given in html</td>
+  </tr>
+  <tr>
     <td>indicator-fill</td>
     <td>#ffffff</td>
     <td>inactive fill color of indicator circles</td>

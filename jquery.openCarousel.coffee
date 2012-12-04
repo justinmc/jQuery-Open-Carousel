@@ -73,7 +73,7 @@ class Ocarousel
             $(@ocarousel).show();
 
             # setup indicators if the user provided a div
-            if indicators_container? && document.implementation.hasFeature("http://www.w3.org/TR/SVG11/feature#BasicStructure", "1.1")
+            if indicators_container.length && document.implementation.hasFeature("http://www.w3.org/TR/SVG11/feature#BasicStructure", "1.1")
                 # setup the svg itself
                 indicators_svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
                 indicators_svg.setAttribute("version", "1.1");
@@ -150,10 +150,13 @@ class Ocarousel
             else
                 $(@ocarousel_container).animate {right: (@getPos i) + "px"}, @settings.speed
 
-            # update the indicators
-            $(@indicators[@active]).attr "fill", "#ffffff"
-            @active = i
-            $(@indicators[@active]).attr "fill", "#afafaf"
+            # update the indicators if they exist
+            if @indicators?
+                $(@indicators[@active]).attr "fill", @settings.indicator_fill
+                $(@indicators[i]).attr "fill", @settings.indicator_stroke
+
+            # update the active variable
+            @active = i     
 
             # resume the scroll timer
             @timerStart()

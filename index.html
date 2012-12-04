@@ -13,42 +13,42 @@ Demo HTML file
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<title>jQuery Open Carousel Demo - By Justin McCandless</title>
-		<link rel = stylesheet type = "text/css" href = "jquery.openCarousel.css">
-		<link rel = stylesheet type = "text/css" href = "style_demo.css">
-		<script type="text/javascript" src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
-		<script type="text/javascript" src="jquery.openCarousel.js"></script> <!-- Here is the js for the carousel -->	
+		<link rel = stylesheet type = "text/css" href = "jquery.openCarousel.css"> <!-- In your projects, be sure to include this css file -->
+		<link rel = stylesheet type = "text/css" href = "style_demo.css">  <!-- This is just for these demos specifically -->
+		<script type="text/javascript" src="http://code.jquery.com/jquery-1.8.3.min.js"></script> <!-- Include jQuery, duh! -->
+		<script type="text/javascript" src="jquery.openCarousel.js"></script> 	<!-- And also include the js file -->
 	</head>
 	<body>
 	    <div id="content">
 		    <h1>jQuery Open Carousel</h1>
 		    <p>
 		        by: <a href="http://www.justinmccandless.com">Justin McCandless</a> <br />
-        		github: <a href="http://github.com/justinmc/Scrolling-Image-Bar">github.com/justinmc/Scrolling-Image-Bar</a> <br />
+        		github: <a href="http://github.com/justinmc/jQuery-Open-Carousel">github.com/justinmc/jQuery-Open-Carousel</a> <br />
 		    </p>
 		    <br /><br />
-		    <div class="ocarousel" data-ocarousel-period="6000">
+		    <div class="ocarousel example_info" data-ocarousel-period="6000">
 			    <div class="ocarousel_window">
 				    <div style="background: #c8daff; width: 884px;">
-				        <h2>Open but Easy</h2>
+				        <h3>Open but Easy</h3>
 				        <p>
 				            This project is an attempt to create a carousel that is easily used without touching any javascript, but also plenty extendible and easily hacked for anyone with a more crafty application.
 				        </p>
 				    </div>
 				    <div style="background: #deffc8; width: 640px;">
-				        <h2>Fit Whatever Content You Want</h2>
+				        <h3>Fit Whatever Content You Want</h3>
 				        <p>
 				            Wrap stuff in divs or use img tags directly, make every item the same size or each one unique, all will be handled intuitively.
 				        </p>
 				    </div>
 				    <div style="background: #ffefc8; width: 884px;">
-				        <h2 style="float: left;">And...</h2>
+				        <h3 style="float: left;">And...</h3>
 				        <br clear="all" />
 				        <p style="float: right; width: 50%;">
 				            Features include easily adding indicator circles, scrolling by multiple slides at once, support for multiple instances, the ability to link to any slide...
 				        </p>
 				    </div>
 				    <div style="background: #ffc8c8; width: 884px;">
-				        <h2>Checkout the README For More!</h2>
+				        <h3>Checkout the README For More!</h3>
 				    </div>
 			    </div>
 			    <br />
@@ -56,30 +56,67 @@ Demo HTML file
 			    <a href="#" data-ocarousel-link="right" style="float: right;">>>></a>
 			    <div class="ocarousel_indicators"></div>
 		    </div>
+		    <br /><br /><br /><br /><br /><br />
+		    <h2>Some More Examples...</h2>
 		    <br /><br /><br /><br />
-		    <div class="ocarousel">
+		    <div class="ocarousel example_photos" data-ocarousel-perscroll="3">
+                <div class="ocarousel_window">
+                    <img src="http://www.justinmccandless.com/img/posts/qingdao/qingdao_normal_0.jpg" />
+                    <img src="http://www.justinmccandless.com/img/posts/qingdao/qingdao_normal_1.jpg" />
+                    <img src="http://www.justinmccandless.com/img/posts/qingdao/qingdao_normal_2.jpg" />
+                    <img src="http://www.justinmccandless.com/img/posts/qingdao/qingdao_normal_3.jpg" />
+                    <img src="http://www.justinmccandless.com/img/posts/qingdao/qingdao_normal_4.jpg" />
+                    <img src="http://www.justinmccandless.com/img/posts/qingdao/qingdao_normal_5.jpg" />
+                    <img src="http://www.justinmccandless.com/img/posts/qingdao/qingdao_normal_6.jpg" />
+                    <img src="http://www.justinmccandless.com/img/posts/qingdao/qingdao_normal_7.jpg" />
+                    <img src="http://www.justinmccandless.com/img/posts/qingdao/qingdao_normal_8.jpg" />
+                    <img src="http://www.justinmccandless.com/img/posts/qingdao/qingdao_normal_9.jpg" />
+                    <img src="http://www.justinmccandless.com/img/posts/qingdao/qingdao_normal_10.jpg" />
+                </div>
+                <br />
+                <a href="#" data-ocarousel-link="left" style="float: left;">Previous</a>
+                <a href="#" data-ocarousel-link="right" style="float: right;">Next</a>
+                <br />
+                <div class="example_photos_thumbs">
+                    <a href="#" data-ocarousel-link="0"><img src="http://www.justinmccandless.com/img/posts/qingdao/qingdao_small_0.jpg" /></a>
+                    <a href="#" data-ocarousel-link="1"><img src="http://www.justinmccandless.com/img/posts/qingdao/qingdao_small_1.jpg" /></a>
+                    <a href="#" data-ocarousel-link="2"><img src="http://www.justinmccandless.com/img/posts/qingdao/qingdao_small_2.jpg" /></a>
+                    <a href="#" data-ocarousel-link="3"><img src="http://www.justinmccandless.com/img/posts/qingdao/qingdao_small_3.jpg" /></a>
+                    <a href="#" data-ocarousel-link="4"><img src="http://www.justinmccandless.com/img/posts/qingdao/qingdao_small_4.jpg" /></a>
+                    <a href="#" data-ocarousel-link="5"><img src="http://www.justinmccandless.com/img/posts/qingdao/qingdao_small_5.jpg" /></a>
+                    <a href="#" data-ocarousel-link="6"><img src="http://www.justinmccandless.com/img/posts/qingdao/qingdao_small_6.jpg" /></a>
+                    <a href="#" data-ocarousel-link="7"><img src="http://www.justinmccandless.com/img/posts/qingdao/qingdao_small_7.jpg" /></a>
+                    <a href="#" data-ocarousel-link="8"><img src="http://www.justinmccandless.com/img/posts/qingdao/qingdao_small_8.jpg" /></a>
+                    <a href="#" data-ocarousel-link="9"><img src="http://www.justinmccandless.com/img/posts/qingdao/qingdao_small_9.jpg" /></a>
+                    <a href="#" data-ocarousel-link="10"><img src="http://www.justinmccandless.com/img/posts/qingdao/qingdao_small_10.jpg" /></a>
+                </div>
+            </div>
+            <br /><br /><br /><br /><br /><br /><br /><br />
+		    <div class="ocarousel example_text" data-ocarousel-indicator-fill="#f1f1f1" data-ocarousel-indicator-r="4" data-ocarousel-indicator-strokewidth="1">
 		        <div class="ocarousel_window">
-		        
+		            <div>
+		                <h3>Lorem ipsum</h3>
+		                <p>
+		                    dolor sit amet, consectetur adipiscing elit. Donec a diam lectus. Sed sit amet ipsum mauris. Maecenas congue ligula ac quam viverra nec consectetur ante hendrerit. Donec et mollis dolor. Praesent et diam eget libero egestas mattis sit amet vitae augue. Nam tincidunt congue enim, ut porta lorem lacinia consectetur. Donec ut libero sed arcu vehicula ultricies a non tortor. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean ut gravida lorem. Ut turpis felis, pulvinar a semper sed, adipiscing id dolor. 
+		                </p>
+		            </div>
+		            <div>
+		                <h3>Pellentesque auctor</h3>
+		                <p>
+		                    nisi id magna consequat sagittis. Curabitur dapibus enim sit amet elit pharetra tincidunt feugiat nisl imperdiet. Ut convallis libero in urna ultrices accumsan. Donec sed odio eros. Donec viverra mi quis quam pulvinar at malesuada arcu rhoncus. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. In rutrum accumsan ultricies. Mauris vitae nisi at sem facilisis semper ac in est.
+		                </p>
+		            </div>
+		            <div>
+		                <h3>Vivamus fermentum</h3>
+                        <p>
+                            semper porta. Nunc diam velit, adipiscing ut tristique vitae, sagittis vel odio. Maecenas convallis ullamcorper ultricies. Curabitur ornare, ligula semper consectetur sagittis, nisi diam iaculis velit, id fringilla sem nunc vel mi. Nam dictum, odio nec pretium volutpat, arcu ante placerat erat, non tristique elit urna et turpis. Quisque mi metus, ornare sit amet fermentum et, tincidunt et orci. Fusce eget orci a orci congue vestibulum. 
+                        </p>
+		            </div>
 		        </div>
+		        <div class="ocarousel_indicators"></div>
 		    </div>
+		    <br /><br /><br /><br />
+		    <h4>&copy; Justin McCandless 2012</h4>
 		</div>
-		<!--
-		<div class="imagebar_window">
-			<div class="imagebar_window_slides">
-				<img src="image1.jpg" class="imagebar_window_slide" id="imagebar_window_slide0">
-				<img src="image2.jpg" class="imagebar_window_slide" id="imagebar_window_slide1">
-				<img src="image3.jpg" class="imagebar_window_slide" id="imagebar_window_slide2">
-			</div>
-		</div>
-		<br />
-		<svg id="imagebar_indicators" xmlns="http://www.w3.org/2000/svg" version="1.1">
-		   	<circle class="imagebar_indicators_circle" id="imagebar_indicators_circle0" cx="126" cy="20" r="6" stroke="#afafaf" stroke-width="2" fill="#ffffff" />
-		   	<circle class="imagebar_indicators_circle" id="imagebar_indicators_circle1" cx="146" cy="20" r="6" stroke="#afafaf" stroke-width="2" fill="#ffffff" />
-		   	<circle class="imagebar_indicators_circle" id="imagebar_indicators_circle2" cx="166" cy="20" r="6" stroke="#afafaf" stroke-width="2" fill="#ffffff" />
-		</svg>
-		<br />
-		<b class="imagebar_button_left">Left</b> | 
-		<b class="imagebar_button_right">Right</b>
-		-->
 	</body>
 </html>
