@@ -7,7 +7,7 @@
   </tr>
   <tr>
     <td>Latest Blog Post:</td>
-    <td>todo</td>
+    <td>http://justinmccandless.com/blog/Open+Source+jQuery+Carousel</td>
   </tr>
   <tr>
     <td>Older Blog Post:</td>
