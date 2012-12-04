@@ -6,20 +6,12 @@
     <td>Justin McCandless (www.justinmccandless.com)</td>
   </tr>
   <tr>
-    <td>Latest Blog Post:</td>
-    <td>http://justinmccandless.com/blog/Open+Source+jQuery+Carousel</td>
-  </tr>
-  <tr>
-    <td>Older Blog Post:</td>
-    <td>http://www.justinmccandless.com/blog/An+Updated+Scolling+Image+Bar+jQuery+Carousel</td>
-  </tr>
-  <tr>
-    <td>Older Blog Post:</td>
-    <td>http://www.justinmccandless.com/blog/Scrolling+Image+Bar</td>
-  </tr>
-  <tr>
     <td>Demo:</td>
-    <td>http://www.justinmccandless.com/demos/Scrolling-Image-Bar/index.html</td>
+    <td>http://www.justinmccandless.com/demos/jQuery-Open-Carousel/index.html</td>
+  </tr>
+  <tr>
+    <td>Latest Blog Post:</td>
+    <td>http://www.justinmccandless.com/blog/Open+Source+jQuery+Carousel</td>
   </tr>
   <tr>
     <td>Contact:</td>
