@@ -155,3 +155,7 @@ To use them, pass a data attribute on the parent ".ocarousel" div with the form:
 
 Open Carousel was written to be extendible to fit many different applications.  The coffeescript is pretty simply written and brief, and I encourage anyone looking for a bit of different functionality to hack away.  Don't forget about all of the resources at the top of this README, and I hope you enjoy the project!
 
+### License
+
+This project is licensed under the MIT license as seen at the top of jquery.openCarousel.coffee, jquery.openCarousel.js, and jquery.openCarousel.css.
+
