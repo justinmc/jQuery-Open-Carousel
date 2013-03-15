@@ -116,12 +116,12 @@ Include jquery.openCarousel.js and jquery.openCarousel.css in your projects
             $(indicator).data("ocarousel_index", i);
             cx = cx + this.settings.indicator_r * 2 + this.settings.indicator_spacing;
           }
-          if (this.pagination_current.length) {
-            $(this.pagination_current).html("1");
-          }
-          if (this.pagination_total.length) {
-            $(this.pagination_total).html(this.frames.length);
-          }
+        }
+        if (this.pagination_current.length) {
+          $(this.pagination_current).html("1");
+        }
+        if (this.pagination_total.length) {
+          $(this.pagination_total).html(this.frames.length);
         }
         $(this.ocarousel).find("[data-ocarousel-link]").click(function(event) {
           var goHere;

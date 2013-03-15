@@ -114,13 +114,13 @@ class Ocarousel
                     # setup the next cx
                     cx = cx + @settings.indicator_r * 2 + @settings.indicator_spacing
 
-                # setup the pagination current page
-                if @pagination_current.length
-                    $(@pagination_current).html("1")
+            # setup the pagination current page
+            if @pagination_current.length
+                $(@pagination_current).html("1")
 
-                # setup the pagination total pages
-                if @pagination_total.length
-                    $(@pagination_total).html(@frames.length)
+            # setup the pagination total pages
+            if @pagination_total.length
+                $(@pagination_total).html(@frames.length)
              
             # click event
             $(@ocarousel).find("[data-ocarousel-link]").click (event) ->
