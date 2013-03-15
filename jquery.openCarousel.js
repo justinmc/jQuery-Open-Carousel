@@ -63,11 +63,11 @@ Include jquery.openCarousel.js and jquery.openCarousel.css in your projects
       var cx, i, indicator, indicators_container, indicators_svg, me, _i, _ref, _ref1, _ref10, _ref11, _ref12, _ref2, _ref3, _ref4, _ref5, _ref6, _ref7, _ref8, _ref9;
       me = this;
       this.ocarousel = $(ocarousel);
-      this.ocarousel_window = $(this.ocarousel).children(".ocarousel_window");
+      this.ocarousel_window = $(this.ocarousel).find(".ocarousel_window");
       this.frames = $(this.ocarousel_window).children();
-      indicators_container = $(this.ocarousel).children(".ocarousel_indicators");
-      this.pagination_current = $(this.ocarousel).children(".ocarousel_pagination_current");
-      this.pagination_total = $(this.ocarousel).children(".ocarousel_pagination_total");
+      indicators_container = $(this.ocarousel).find(".ocarousel_indicators");
+      this.pagination_current = $(this.ocarousel).find(".ocarousel_pagination_current");
+      this.pagination_total = $(this.ocarousel).find(".ocarousel_pagination_total");
       if (this.frames.length > 1) {
         this.settings = {};
         this.settings.speed = (_ref = $(this.ocarousel).data('ocarousel-speed')) != null ? _ref : Ocarousel.settings.speed;

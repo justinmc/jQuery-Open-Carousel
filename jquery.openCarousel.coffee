@@ -45,11 +45,11 @@ class Ocarousel
         
         # get ocarousel divs
         @ocarousel = $(ocarousel)
-        @ocarousel_window = $(@ocarousel).children(".ocarousel_window")
+        @ocarousel_window = $(@ocarousel).find(".ocarousel_window")
         @frames = $(@ocarousel_window).children()
-        indicators_container = $(@ocarousel).children(".ocarousel_indicators")
-        @pagination_current = $(@ocarousel).children(".ocarousel_pagination_current")
-        @pagination_total = $(@ocarousel).children(".ocarousel_pagination_total")
+        indicators_container = $(@ocarousel).find(".ocarousel_indicators")
+        @pagination_current = $(@ocarousel).find(".ocarousel_pagination_current")
+        @pagination_total = $(@ocarousel).find(".ocarousel_pagination_total")
 
         # if there are 0 or 1 frames, then the carousel should not do anything!
         if @frames.length > 1
