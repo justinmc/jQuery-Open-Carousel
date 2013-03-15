@@ -69,6 +69,16 @@ You can also very easily create a line of SVG circles that fill up to represent 
 <div class="ocarousel_indicators"></div>
 ```
 
+### Pagination
+
+Open Carouesel can also allow you to display numbers showing the total number of slides and the current slide.  Just add the class `ocarousel_pagination_current` and/or `ocarousel_pagination_total` to the element whose html you want replaced with the current and total page numbers, respectively.  So an implementation might look like this:
+
+```html
+<span class="ocarousel_pagination_current"></span>
+/
+<span class="ocarousel_pagination_total"></span>
+```
+
 ## Configuration
 
 Open Carousel is also highly configurable using just data attributes.  Here are all of the possible settings, with their default values and descriptions.

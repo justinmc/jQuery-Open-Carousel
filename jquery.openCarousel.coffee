@@ -45,9 +45,11 @@ class Ocarousel
         
         # get ocarousel divs
         @ocarousel = $(ocarousel)
-        @ocarousel_window = $(@ocarousel).children(".ocarousel_window");
-        @frames = $(@ocarousel_window).children();
-        indicators_container = $(@ocarousel).children(".ocarousel_indicators");
+        @ocarousel_window = $(@ocarousel).children(".ocarousel_window")
+        @frames = $(@ocarousel_window).children()
+        indicators_container = $(@ocarousel).children(".ocarousel_indicators")
+        @pagination_current = $(@ocarousel).children(".ocarousel_pagination_current")
+        @pagination_total = $(@ocarousel).children(".ocarousel_pagination_total")
 
         # if there are 0 or 1 frames, then the carousel should not do anything!
         if @frames.length > 1
@@ -67,50 +69,58 @@ class Ocarousel
             @settings.indicator_strokewidth = $(@ocarousel).data('ocarousel-indicator-strokewidth') ? Ocarousel.settings.indicator_strokewidth
             
             # add container for the slides
-            @ocarousel_container = document.createElement("div");
-            @ocarousel_container.className =  "ocarousel_window_slides";            
+            @ocarousel_container = document.createElement("div")
+            @ocarousel_container.className =  "ocarousel_window_slides"
             if @settings.shuffle is true
                 @frames.sort () ->
 	                return Math.round( Math.random() ) - 0.5
             $(@frames).each (i) ->
-                me.ocarousel_container.appendChild(this);
-            @ocarousel_window.html("");
-            $(@ocarousel_window).get(0).appendChild(@ocarousel_container);
+                me.ocarousel_container.appendChild(this)
+            @ocarousel_window.html("")
+            $(@ocarousel_window).get(0).appendChild(@ocarousel_container)
             
             # let everything be visible
-            $(@ocarousel).show();
+            $(@ocarousel).show()
 
             # setup indicators if the user provided a div
             if indicators_container.length && document.implementation.hasFeature("http://www.w3.org/TR/SVG11/feature#BasicStructure", "1.1")
                 # setup the svg itself
-                indicators_svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
-                indicators_svg.setAttribute("version", "1.1");
-                $(indicators_container).get(0).appendChild(indicators_svg);
+                indicators_svg = document.createElementNS("http://www.w3.org/2000/svg", "svg")
+                indicators_svg.setAttribute("version", "1.1")
+                $(indicators_container).get(0).appendChild(indicators_svg)
 
                 # setup the circle indicators
                 @indicators = []
                 cx = $(indicators_container).width() / 2 - @settings.indicator_r * @frames.length - @settings.indicator_spacing * @frames.length / 2
                 for i in [0..@frames.length - 1]
                     # create an indicator
-                    indicator = document.createElementNS("http://www.w3.org/2000/svg", "circle");
-                    indicator.className = "ocarousel_link";
-                    indicator.setAttribute("data-ocarousel-link", i);
-                    indicator.setAttribute("cx", cx);
-                    indicator.setAttribute("cy", @settings.indicator_cy);
-                    indicator.setAttribute("r", @settings.indicator_r);
-                    indicator.setAttribute("stroke", @settings.indicator_stroke);
-                    indicator.setAttribute("stroke-width", @settings.indicator_strokewidth);
-                    indicator.setAttribute("fill", if i is 0 then @settings.indicator_stroke else @settings.indicator_fill);
+                    indicator = document.createElementNS("http://www.w3.org/2000/svg", "circle")
+                    indicator.className = "ocarousel_link"
+                    indicator.setAttribute("data-ocarousel-link", i)
+                    indicator.setAttribute("cx", cx)
+                    indicator.setAttribute("cy", @settings.indicator_cy)
+                    indicator.setAttribute("r", @settings.indicator_r)
+                    indicator.setAttribute("stroke", @settings.indicator_stroke)
+                    indicator.setAttribute("stroke-width", @settings.indicator_strokewidth)
+                    indicator.setAttribute("fill", if i is 0 then @settings.indicator_stroke else @settings.indicator_fill)
 
                     # append it to the DOM and our array
-                    indicators_svg.appendChild(indicator);
-                    @indicators.push(indicator);
+                    indicators_svg.appendChild(indicator)
+                    @indicators.push(indicator)
 
                     # set its index as a data setAttribute
-                    $(indicator).data("ocarousel_index", i);
+                    $(indicator).data("ocarousel_index", i)
 
                     # setup the next cx
-                    cx = cx + @settings.indicator_r * 2 + @settings.indicator_spacing;
+                    cx = cx + @settings.indicator_r * 2 + @settings.indicator_spacing
+
+                # setup the pagination current page
+                if @pagination_current.length
+                    $(@pagination_current).html("1")
+
+                # setup the pagination total pages
+                if @pagination_total.length
+                    $(@pagination_total).html(@frames.length)
              
             # click event
             $(@ocarousel).find("[data-ocarousel-link]").click (event) ->
@@ -164,13 +174,17 @@ class Ocarousel
                 $(@indicators[i]).attr "fill", @settings.indicator_stroke
 
             # update the active variable
-            @active = i     
+            @active = i
+
+            # update the current pagination number if it exists
+            if @pagination_current.length
+                $(@pagination_current).html(@active + 1)
 
             # resume the scroll timer
             @timerStart()
 
     ### Returns the distance of a frame from the left edge of its container ###
-    getPos: (which) -> 
+    getPos: (which) ->
         return $(@frames[which]).position().left
 
     ### Returns the index of the next slide that should be shown ###
@@ -190,7 +204,7 @@ class Ocarousel
     ### Starts or resumes the scroll timer ###
     timerStart: ->
         me = @
-        if @settings.period != "Infinity"
+        if @settings.period != Infinity
             @timer = setInterval (() -> me.scrollTo (me.getNext())), @settings.period
 
 $(document).ready ->
