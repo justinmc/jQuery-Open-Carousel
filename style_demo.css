@@ -74,6 +74,6 @@ body
         padding: 0;
     }
         .example_text .ocarousel_window_slides div {
-            width: 400px;
-            height: 400px;
+            width: 384px;
+            height: 384px;
         }

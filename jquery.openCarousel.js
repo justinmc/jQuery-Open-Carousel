@@ -165,12 +165,9 @@ Include jquery.openCarousel.js and jquery.openCarousel.css in your projects
         $(this.ocarousel_container).stop();
         if (this.settings.transition === "fade") {
           nextPos = me.getPos(i);
-          $(this.ocarousel_container).fadeOut(this.settings.speed, null, function() {
-            $(me.ocarousel_container).animate({
-              right: nextPos + "px"
-            }, 0);
-            return $(me.ocarousel_container).fadeIn(me.settings.speed);
-          });
+          $(this.ocarousel_container).fadeOut(this.settings.speed, null).animate({
+            right: nextPos + "px"
+          }, 0).fadeIn(me.settings.speed);
         } else {
           $(this.ocarousel_container).animate({
             right: (this.getPos(i)) + "px"

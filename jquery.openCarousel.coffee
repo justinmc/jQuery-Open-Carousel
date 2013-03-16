@@ -162,9 +162,9 @@ class Ocarousel
             $(@ocarousel_container).stop()
             if @settings.transition == "fade"
                 nextPos = me.getPos i
-                $(@ocarousel_container).fadeOut @settings.speed, null, ->
-                    $(me.ocarousel_container).animate {right: nextPos + "px"}, 0
-                    $(me.ocarousel_container).fadeIn me.settings.speed
+                $(@ocarousel_container).fadeOut(@settings.speed, null)
+                .animate({right: nextPos + "px"}, 0)
+                .fadeIn(me.settings.speed)
             else
                 $(@ocarousel_container).animate {right: (@getPos i) + "px"}, @settings.speed
 
