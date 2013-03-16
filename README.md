@@ -17,6 +17,10 @@
     <td>Contact:</td>
     <td>justinjmccandless@gmail.com</td>
   </tr>
+  <tr>
+    <td>jQuery Version:</td>
+    <td>1.4.3+</td>
+  </tr>
 </table>
 
 ## Overview
