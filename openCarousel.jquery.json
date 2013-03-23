@@ -7,6 +7,7 @@
         "email" : "justinjmccandless@gmail.com",
         "url" : "http://www.justinmccandless.com"
     },
+    "description" : "An carousel that's as easy to customize and configure without javascript as it is to hack for any specific use",
     "keywords" : [
         "carousel",
         "slideshow",

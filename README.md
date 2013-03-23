@@ -1,5 +1,7 @@
 # jQuery Open Carousel
 
+This project is an open and easy to implement carousel display made using jQuery.  It supports linking to scroll to any slide, automatic generation of indicator circles, and pretty much any content will work inside of it.  Multiple carousels can exist on one page without conflict.  Many configuration options can be set dynamically using data attributes.
+
 <table>
   <tr>
     <td>Author:</td>
@@ -22,10 +24,6 @@
     <td>1.4.3+</td>
   </tr>
 </table>
-
-## Overview
-
-This project is an open and easy to implement carousel display made using jQuery.  It supports linking to scroll to any slide, automatic generation of indicator circles, and pretty much any content will work inside of it.  Multiple carousels can exist on one page without conflict.  Many configuration options can be set dynamically using data attributes.
 
 ## Setup
 
