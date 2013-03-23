@@ -1,6 +1,6 @@
 {
-    "name" : "open carousel",
-    "version" : "1.0",
+    "name" : "openCarousel",
+    "version" : "1.0.0",
     "title" : "jQuery Open Carousel",
     "author" : {
         "name" : "Justin McCandless",
@@ -15,10 +15,13 @@
         "image",
         "bar"
     ],
-    "licenses" : {
-        "type" : "MIT",
-        "url" : "https"
-    },
+    "licenses" : [
+        {
+            "type" : "MIT",
+            "url" : "https://raw.github.com/justinmc/jQuery-Open-Carousel/master/LICENSE.md"
+        }
+    ],
+    "docs" : "https://github.com/justinmc/jQuery-Open-Carousel/blob/master/README.md",
     "demo" : "http://justinmccandless.com/demos/Scrolling-Image-Bar/index.html",
     "bugs" : "https://github.com/justinmc/jQuery-Open-Carousel/issues",
     "homepage" : "https://github.com/justinmc/jQuery-Open-Carousel",
