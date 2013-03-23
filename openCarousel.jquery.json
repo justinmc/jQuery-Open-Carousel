@@ -1,13 +1,13 @@
 {
     "name" : "openCarousel",
-    "version" : "1.0.0",
+    "version" : "1.0.1",
     "title" : "jQuery Open Carousel",
     "author" : {
         "name" : "Justin McCandless",
         "email" : "justinjmccandless@gmail.com",
         "url" : "http://www.justinmccandless.com"
     },
-    "description" : "An carousel that's as easy to customize and configure without javascript as it is to hack for any specific use",
+    "description" : "A carousel that's as easy to customize and configure without javascript as it is to hack for any specific use",
     "keywords" : [
         "carousel",
         "slideshow",
