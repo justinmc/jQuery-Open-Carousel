@@ -28,7 +28,7 @@ Include jquery.openCarousel.js and jquery.openCarousel.css in your projects
             position: relative;
             margin: 0 auto;
             overflow: hidden;
-            width: 10000px;
+            width: 100000px;
             white-space: nowrap;
         }
         .ocarousel_window_slides * {
