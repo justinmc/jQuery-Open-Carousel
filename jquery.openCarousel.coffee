@@ -72,8 +72,7 @@ class Ocarousel
             @ocarousel_container = document.createElement("div")
             @ocarousel_container.className =  "ocarousel_window_slides"
             if @settings.shuffle is true
-                @frames.sort () ->
-	                return Math.round( Math.random() ) - 0.5
+                @frames = arrayShuffle(@frames)
             $(@frames).each (i) ->
                 me.ocarousel_container.appendChild(this)
             @ocarousel_window.html("")
@@ -206,6 +205,21 @@ class Ocarousel
         me = @
         if @settings.period != Infinity
             @timer = setInterval (() -> me.scrollTo (me.getNext())), @settings.period
+
+    # Randomizes the order of elements in the passed in array in place.
+    # Adapted from http://sedition.com/perl/javascript-fy.html and https://gist.github.com/ddgromit/859699
+    arrayShuffle = (arr) ->
+        i = arr.length
+        if i == 0 then return false
+        
+        while --i
+            j = Math.floor(Math.random() * (i+1))
+            tempi = arr[i]
+            tempj = arr[j]
+            arr[i] = tempj
+            arr[j] = tempi
+
+        return arr
 
 $(document).ready ->
     $(".ocarousel").each ->
