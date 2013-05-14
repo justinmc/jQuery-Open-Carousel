@@ -198,10 +198,18 @@ Include jquery.openCarousel.js and jquery.openCarousel.css in your projects
 
 
     Ocarousel.prototype.getNext = function() {
-      var next;
+      var count, next;
       next = this.active + this.settings.perscroll;
       if (next > (this.frames.length - this.settings.perscroll) && next < this.frames.length) {
         next = this.frames.length - this.settings.perscroll;
+      }
+      count = this.frames.length;
+      while (count && !$(this.frames[next]).is(":visible")) {
+        next++;
+        if (next > this.frames.length - 1) {
+          next = 0;
+        }
+        count--;
       }
       return next;
     };
@@ -211,10 +219,18 @@ Include jquery.openCarousel.js and jquery.openCarousel.css in your projects
 
 
     Ocarousel.prototype.getPrev = function() {
-      var prev;
+      var count, prev;
       prev = this.active - this.settings.perscroll;
       if (prev < 0 && this.active !== 0) {
         prev = 0;
+      }
+      count = this.frames.length;
+      while (count && !$(this.frames[prev]).is(":visible")) {
+        prev--;
+        if (prev < 0) {
+          prev = this.frames.length - 1;
+        }
+        count--;
       }
       return prev;
     };

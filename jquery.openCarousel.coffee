@@ -191,6 +191,15 @@ class Ocarousel
         next = @active + @settings.perscroll
         if next > (@frames.length - @settings.perscroll) && next < @frames.length
             next = @frames.length - @settings.perscroll
+
+        # If the choosen frame is hidden, choose the next visible one
+        count = @frames.length
+        while count && !$(@frames[next]).is(":visible")
+            next++
+            if next > @frames.length - 1
+                next = 0
+            count--
+
         return next
 
     ### Returns the index of the next slide that should be shown before the current position ###
@@ -198,6 +207,15 @@ class Ocarousel
         prev = @active - @settings.perscroll
         if prev < 0 && @active != 0
             prev = 0
+
+        # If the chosen frame is hidden, choose the previous visible one
+        count = @frames.length
+        while count && !$(@frames[prev]).is(":visible")
+            prev--
+            if prev < 0
+                prev = @frames.length - 1
+            count--
+
         return prev
 
     ### Starts or resumes the scroll timer ###
