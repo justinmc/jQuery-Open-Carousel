@@ -1,6 +1,6 @@
 {
     "name" : "openCarousel",
-    "version" : "1.0.2",
+    "version" : "1.1.0",
     "title" : "jQuery Open Carousel",
     "author" : {
         "name" : "Justin McCandless",
@@ -14,7 +14,8 @@
         "slide",
         "slider",
         "image",
-        "bar"
+        "bar",
+        "mutable"
     ],
     "licenses" : [
         {

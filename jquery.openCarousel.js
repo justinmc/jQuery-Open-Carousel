@@ -20,9 +20,8 @@ Include jquery.openCarousel.js and jquery.openCarousel.css in your projects
 
 
 (function() {
-  var Ocarousel;
 
-  Ocarousel = (function() {
+  window.Ocarousel = (function() {
     /* Initialize
     */
 
@@ -33,6 +32,8 @@ Include jquery.openCarousel.js and jquery.openCarousel.css in your projects
     Ocarousel.prototype.ocarousel_window = null;
 
     Ocarousel.prototype.ocarousel_container = null;
+
+    Ocarousel.prototype.indicators_container = null;
 
     Ocarousel.prototype.frames = null;
 
@@ -62,12 +63,12 @@ Include jquery.openCarousel.js and jquery.openCarousel.css in your projects
     };
 
     function Ocarousel(ocarousel) {
-      var cx, i, indicator, indicators_container, indicators_svg, me, _i, _ref, _ref1, _ref10, _ref11, _ref12, _ref2, _ref3, _ref4, _ref5, _ref6, _ref7, _ref8, _ref9;
+      var me, _ref, _ref1, _ref10, _ref11, _ref2, _ref3, _ref4, _ref5, _ref6, _ref7, _ref8, _ref9;
       me = this;
       this.ocarousel = $(ocarousel);
       this.ocarousel_window = $(this.ocarousel).find(".ocarousel_window");
       this.frames = $(this.ocarousel_window).children();
-      indicators_container = $(this.ocarousel).find(".ocarousel_indicators");
+      this.indicators_container = $(this.ocarousel).find(".ocarousel_indicators");
       this.pagination_current = $(this.ocarousel).find(".ocarousel_pagination_current");
       this.pagination_total = $(this.ocarousel).find(".ocarousel_pagination_total");
       if (this.frames.length > 1) {
@@ -86,98 +87,119 @@ Include jquery.openCarousel.js and jquery.openCarousel.css in your projects
         this.settings.indicator_strokewidth = (_ref11 = $(this.ocarousel).data('ocarousel-indicator-strokewidth')) != null ? _ref11 : Ocarousel.settings.indicator_strokewidth;
         this.ocarousel_container = document.createElement("div");
         this.ocarousel_container.className = "ocarousel_window_slides";
-        if (this.settings.shuffle === true) {
-          this.frames = arrayShuffle(this.frames);
-        }
-        $(this.frames).each(function(i) {
-          return me.ocarousel_container.appendChild(this);
-        });
+        $(this.ocarousel).show();
+        this.render();
         this.ocarousel_window.html("");
         $(this.ocarousel_window).get(0).appendChild(this.ocarousel_container);
-        $(this.ocarousel).show();
-        if (indicators_container.length && document.implementation.hasFeature("http://www.w3.org/TR/SVG11/feature#BasicStructure", "1.1")) {
-          indicators_svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
-          indicators_svg.setAttribute("version", "1.1");
-          $(indicators_container).get(0).appendChild(indicators_svg);
-          this.indicators = [];
-          cx = $(indicators_container).width() / 2 - this.settings.indicator_r * this.frames.length - this.settings.indicator_spacing * this.frames.length / 2;
-          for (i = _i = 0, _ref12 = this.frames.length - 1; 0 <= _ref12 ? _i <= _ref12 : _i >= _ref12; i = 0 <= _ref12 ? ++_i : --_i) {
-            indicator = document.createElementNS("http://www.w3.org/2000/svg", "circle");
-            indicator.className = "ocarousel_link";
-            indicator.setAttribute("data-ocarousel-link", i);
-            indicator.setAttribute("cx", cx);
-            indicator.setAttribute("cy", this.settings.indicator_cy);
-            indicator.setAttribute("r", this.settings.indicator_r);
-            indicator.setAttribute("stroke", this.settings.indicator_stroke);
-            indicator.setAttribute("stroke-width", this.settings.indicator_strokewidth);
-            indicator.setAttribute("fill", i === 0 ? this.settings.indicator_stroke : this.settings.indicator_fill);
-            indicators_svg.appendChild(indicator);
-            this.indicators.push(indicator);
-            $(indicator).data("ocarousel_index", i);
-            cx = cx + this.settings.indicator_r * 2 + this.settings.indicator_spacing;
-          }
-        }
-        if (this.pagination_current.length) {
-          $(this.pagination_current).html("1");
-        }
-        if (this.pagination_total.length) {
-          $(this.pagination_total).html(this.frames.length);
-        }
-        $(this.ocarousel).find("[data-ocarousel-link]").click(function(event) {
-          var goHere;
-          event.preventDefault();
-          goHere = $(this).data("ocarousel-link");
-          if (goHere != null) {
-            if (goHere === "left" || goHere === "Left" || goHere === "l" || goHere === "L") {
-              goHere = me.getPrev();
-            } else if (goHere === "right" || goHere === "Right" || goHere === "r" || goHere === "R") {
-              goHere = me.getNext();
-            } else if (goHere === "first" || goHere === "First" || goHere === "beginning" || goHere === "Beginning") {
-              goHere = 0;
-            } else if (goHere === "last" || goHere === "Last" || goHere === "end" || goHere === "End") {
-              goHere = me.frames.length - 1;
-            }
-            return me.scrollTo(goHere);
-          }
-        });
-        this.timerStart();
       }
     }
+
+    /* Remove and reset everything in the DOM
+    */
+
+
+    Ocarousel.prototype.render = function() {
+      var cx, i, indicator, indicators_svg, me, _i, _ref;
+      this.timerStop();
+      if (this.settings.shuffle === true) {
+        this.frames = arrayShuffle(this.frames);
+      }
+      $(this.ocarousel_container).html("");
+      me = this;
+      $(this.frames).each(function(i) {
+        return me.ocarousel_container.appendChild(this);
+      });
+      if (this.indicators_container.length && document.implementation.hasFeature("http://www.w3.org/TR/SVG11/feature#BasicStructure", "1.1")) {
+        $(this.indicators_container).html("");
+        indicators_svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+        indicators_svg.setAttribute("version", "1.1");
+        $(this.indicators_container).get(0).appendChild(indicators_svg);
+        this.indicators = [];
+        cx = $(this.indicators_container).width() / 2 - this.settings.indicator_r * this.frames.length - this.settings.indicator_spacing * this.frames.length / 2;
+        for (i = _i = 0, _ref = this.frames.length - 1; 0 <= _ref ? _i <= _ref : _i >= _ref; i = 0 <= _ref ? ++_i : --_i) {
+          indicator = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+          indicator.className = "ocarousel_link";
+          indicator.setAttribute("data-ocarousel-link", i);
+          indicator.setAttribute("cx", cx);
+          indicator.setAttribute("cy", this.settings.indicator_cy);
+          indicator.setAttribute("r", this.settings.indicator_r);
+          indicator.setAttribute("stroke", this.settings.indicator_stroke);
+          indicator.setAttribute("stroke-width", this.settings.indicator_strokewidth);
+          indicator.setAttribute("fill", i === this.active ? this.settings.indicator_stroke : this.settings.indicator_fill);
+          indicators_svg.appendChild(indicator);
+          this.indicators.push(indicator);
+          $(indicator).data("ocarousel_index", i);
+          cx = cx + this.settings.indicator_r * 2 + this.settings.indicator_spacing;
+        }
+      }
+      if (this.pagination_current.length) {
+        $(this.pagination_current).html(this.active + 1);
+      }
+      if (this.pagination_total.length) {
+        $(this.pagination_total).html(this.frames.length);
+      }
+      $(this.ocarousel).find("[data-ocarousel-link]").off("click");
+      $(this.ocarousel).find("[data-ocarousel-link]").on("click", function(event) {
+        var goHere;
+        event.preventDefault();
+        goHere = $(this).data("ocarousel-link");
+        if (goHere != null) {
+          if (goHere === "left" || goHere === "Left" || goHere === "l" || goHere === "L") {
+            goHere = me.getPrev();
+          } else if (goHere === "right" || goHere === "Right" || goHere === "r" || goHere === "R") {
+            goHere = me.getNext();
+          } else if (goHere === "first" || goHere === "First" || goHere === "beginning" || goHere === "Beginning") {
+            goHere = 0;
+          } else if (goHere === "last" || goHere === "Last" || goHere === "end" || goHere === "End") {
+            goHere = me.frames.length - 1;
+          }
+          return me.scrollTo(goHere);
+        }
+      });
+      return this.timerStart();
+    };
 
     /* Animate a transition to the given position
     */
 
 
-    Ocarousel.prototype.scrollTo = function(i) {
+    Ocarousel.prototype.scrollTo = function(index, instant) {
       var me, nextPos, perEnd, wrapEnd;
+      if (instant == null) {
+        instant = false;
+      }
       me = this;
-      if (i != null) {
-        clearInterval(this.timer);
-        if (i >= (this.frames.length - this.settings.wrapearly)) {
-          i = 0;
-        } else if (i >= (this.frames.length - this.settings.perscroll)) {
-          i = this.frames.length - this.settings.perscroll;
-        } else if (i < 0) {
+      if (index != null) {
+        this.timerStop();
+        if (index >= (this.frames.length - this.settings.wrapearly)) {
+          index = 0;
+        } else if (index >= (this.frames.length - this.settings.perscroll)) {
+          index = this.frames.length - this.settings.perscroll;
+        } else if (index < 0) {
           perEnd = this.frames.length - this.settings.perscroll;
           wrapEnd = this.frames.length - 1 - this.settings.wrapearly;
-          i = Math.min(perEnd, wrapEnd);
+          index = Math.min(perEnd, wrapEnd);
         }
         $(this.ocarousel_container).stop();
-        if (this.settings.transition === "fade") {
-          nextPos = me.getPos(i);
+        nextPos = this.getPos(index);
+        if (instant) {
+          $(this.ocarousel_container).animate({
+            right: nextPos + "px"
+          }, 0);
+        } else if (this.settings.transition === "fade") {
           $(this.ocarousel_container).fadeOut(this.settings.speed, null).animate({
             right: nextPos + "px"
           }, 0).fadeIn(me.settings.speed);
         } else {
           $(this.ocarousel_container).animate({
-            right: (this.getPos(i)) + "px"
+            right: nextPos + "px"
           }, this.settings.speed);
         }
         if (this.indicators != null) {
           $(this.indicators[this.active]).attr("fill", this.settings.indicator_fill);
-          $(this.indicators[i]).attr("fill", this.settings.indicator_stroke);
+          $(this.indicators[index]).attr("fill", this.settings.indicator_stroke);
         }
-        this.active = i;
+        this.active = index;
         if (this.pagination_current.length) {
           $(this.pagination_current).html(this.active + 1);
         }
@@ -189,8 +211,8 @@ Include jquery.openCarousel.js and jquery.openCarousel.css in your projects
     */
 
 
-    Ocarousel.prototype.getPos = function(which) {
-      return $(this.frames[which]).position().left;
+    Ocarousel.prototype.getPos = function(index) {
+      return $(this.frames[index]).position().left;
     };
 
     /* Returns the index of the next slide that should be shown
@@ -246,6 +268,57 @@ Include jquery.openCarousel.js and jquery.openCarousel.css in your projects
         return this.timer = setInterval((function() {
           return me.scrollTo(me.getNext());
         }), this.settings.period);
+      }
+    };
+
+    /* Stops the scroll timer
+    */
+
+
+    Ocarousel.prototype.timerStop = function() {
+      if (this.timer != null) {
+        clearInterval(this.timer);
+        return this.timer = null;
+      }
+    };
+
+    /* Starts the timer if it is stopped, stops the timer if it is running
+    */
+
+
+    Ocarousel.prototype.timerToggle = function() {
+      if (this.timer != null) {
+        return this.timerStop();
+      } else {
+        return this.timerStart();
+      }
+    };
+
+    /* Removes a frame, keeping the carousel in an intuitive position afterwards
+    */
+
+
+    Ocarousel.prototype.remove = function(index) {
+      if (index > 0 && index < (this.frames.length - 1)) {
+        this.frames.splice(index, 1);
+        this.render();
+        if (this.active > index) {
+          return this.scrollTo(this.active - 1, true);
+        }
+      }
+    };
+
+    /* Adds a frame, keeping the carousel in an intuitive position afterwards
+    */
+
+
+    Ocarousel.prototype.add = function(elt, index) {
+      if (index > 0 && index < (this.frames.length - 1)) {
+        this.frames.splice(index, 0, elt);
+        this.render();
+        if (this.active >= index) {
+          return this.scrollTo(this.active + 1, true);
+        }
       }
     };
 

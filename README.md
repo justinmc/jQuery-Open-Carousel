@@ -165,9 +165,61 @@ To use them, pass a data attribute on the parent ".ocarousel" div with the form:
 
 ## Hacking
 
-Open Carousel was written to be extendible to fit many different applications.  The coffeescript is pretty simply written and brief, and I encourage anyone looking for a bit of different functionality to hack away.  Don't forget about all of the resources at the top of this README, and I hope you enjoy the project!
+Open Carousel was written to be extendible to fit many different applications.  By following the setup above you get something that just starts working right out of the box, but if your requirements are more specific then it's worth getting a bit more familiar with Open Carousel.
 
-### License
+Check out the example titled "Programmatically Accessing the Carousel" in index.html and it's accompanying code in example_programmatic.coffee to see all of this stuff in action, and pull requests are always welcome if you think you've added some functionality that could be of use to others in the main project!
+
+### Startup
+
+In the provided CoffeeScript, you'll notice a small piece of code at the very bottom that creates all the needed Open Carousel objects:
+
+    $(document).ready ->
+        $(".ocarousel").each ->
+            new Ocarousel(this)
+
+This simply creates a new Ocarousel object for every .ocarousel class on the page.  If you want to control when and where Open Carousel is started (say due to a complex bootstrap process like with Requirejs), then just remove these lines and create a new Ocarousel object where you need it.  Just make sure you do this after the DOM is ready and jQuery is loaded.
+
+### The Ocarousel Object
+
+Your application might have a need to programmatically access the Ocarousel object after it's initial creation, and if so, you should save a reference to it!  This will allow you to easily do things like programmatic scrolling or adding and removing slides while the carousel is running.
+
+#### Public Methods
+
+If you've got an instance of Ocarousel that you'd like to interface with programmatically, these public methods are the best way to do it.
+
+##### scrollTo(index, instant)
+
+This method scrolls the carousel to the slide at the given index.  If instant is set to true, then it transitions immediately with no animation.  Otherwise it uses the animation set by the transtion configuration parameter.
+
+##### getNext() and getPrev()
+
+These two methods return the index of the slide in the next or previous position from the current slide, respectively.  The perscroll configuration parameter is taken into consideration for scrolling by multiple slides at a time, and the methods will wrap around to the beginning/end if going out of bounds.  Hidden slides are not included.
+
+##### remove(index)
+
+This removes the slide at the given index from the data and rerenders the carousel.
+
+##### add(elt, index)
+
+This adds a DOM element, that you pass in as elt, to the carousel at the given index and rerenders.
+
+##### timerStop()
+
+Stops the timer that handles periodic scrolling.
+
+##### timerStart()
+
+Starts the timer that handles periodic scrolling, according to the current configuration.
+
+##### timerToggle()
+
+Toggles the status of the timer; if stopped it starts it, if it's running then it stops it.
+
+#### Programmatically Changing Configuration Parameters
+
+You can simply access the `settings` parameter of your oCarousel instance and change any of the configuration parameters detailed above at any time.  Some will change the behavior of the carousel immediately (e.g. `period`), but be aware that most require you to rerender by calling `render()`.
+
+## License
 
 This project is licensed under the MIT license as seen at the top of jquery.openCarousel.coffee, jquery.openCarousel.js, and jquery.openCarousel.css.
 
