@@ -122,6 +122,12 @@ Open Carousel is also highly configurable using just data attributes.  Here are 
     <td>setting to true will randomize the order of slides, false will keep the order given in html</td>
   </tr>
   <tr>
+    <td>fullscreen</td>
+    <td>false</td>
+    <td>setting to true responsively set the size of the slides to the width of the screen</td>
+  </tr>
+  <tr>
+  <tr>
     <td>indicator-fill</td>
     <td>#ffffff</td>
     <td>inactive fill color of indicator circles</td>
