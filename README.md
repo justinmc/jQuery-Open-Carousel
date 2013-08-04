@@ -173,7 +173,7 @@ To use them, pass a data attribute on the parent ".ocarousel" div with the form:
 
 Open Carousel was written to be extendible to fit many different applications.  By following the setup above you get something that just starts working right out of the box, but if your requirements are more specific then it's worth getting a bit more familiar with Open Carousel.
 
-Check out the example titled "Programmatically Accessing the Carousel" in index.html and it's accompanying code in example_programmatic.coffee to see all of this stuff in action, and pull requests are always welcome if you think you've added some functionality that could be of use to others in the main project!
+Check out the programmatic example at examples/addRemove/ to see all of this stuff in action, and pull requests are always welcome if you think you've added some functionality that could be of use to others in the main project!
 
 ### Startup
 
