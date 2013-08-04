@@ -1,0 +1,54 @@
+<!--
+jQuery Open Carousel
+Justin McCandless
+justinmccandless.com
+
+Demo HTML file - Fullscreen
+-->
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>jQuery Open Carousel Demo - Fullscreen - By Justin McCandless</title>
+		<link rel = stylesheet type = "text/css" href = "styles/jquery.openCarousel.css"> <!-- In your projects, be sure to include this css file -->
+		<link rel = stylesheet type = "text/css" href = "styles/style_demo_fullscreen.css">  <!-- This is just for these demos specifically -->
+		<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script> <!-- Include jQuery, duh! -->
+		<script type="text/javascript" src="scripts/jquery.openCarousel.js"></script> 	<!-- And also include the js file -->
+	</head>
+	<body>
+	    <div id="content">
+		    <h1>jQuery Open Carousel - Fullscreen Example</h1>
+		    <p>
+		        by: <a href="http://www.justinmccandless.com">Justin McCandless</a> <br />
+        		github: <a href="http://github.com/justinmc/jQuery-Open-Carousel">github.com/justinmc/jQuery-Open-Carousel</a> <br />
+		    </p>
+		    <br /><br />
+        <p style="margin: 0 auto; text-align: left; width: 80%;">
+          This example demonstrates the <code>data-ocarousel-fullscreen</code> configuration attribute, which dynamically sets each frame's width to the full width of the screen.  It's also fully responsive; try changing the size of your browser window or rotating your mobile device and see how it adapts.
+        </p>
+		    <br /><br />
+		    <div class="ocarousel example_fullscreen" data-ocarousel-fullscreen="true" data-ocarousel-indicator-strokewidth="0" data-ocarousel-indicator-r="8">
+            <div class="example_fullscreen_left">
+                <a href="#" data-ocarousel-link="left"><<<</a>
+            </div>
+            <div class="example_fullscreen_right">
+                <a href="#" data-ocarousel-link="right">>>></a>
+            </div>
+            <div class="example_fullscreen_bottom">
+                <div class="ocarousel_indicators"></div>
+            </div>
+            <div class="ocarousel_window">
+              <img src="http://www.justinmccandless.com/img/summerPalace1.jpg" />
+              <img src="http://www.justinmccandless.com/img/summerPalace2.jpg" />
+              <img src="http://www.justinmccandless.com/img/summerPalace3.jpg" />
+              <!-- <img src="http://www.justinmccandless.com/img/summerPalace4.jpg" /> -->
+            </div>
+		    </div>
+		    <br /><br /><br /><br /><br /><br /><br /><br />
+		    <h4>&copy; Justin McCandless 2013</h4>
+		</div>
+	</body>
+</html>

@@ -59,11 +59,12 @@ Include jquery.openCarousel.js and jquery.openCarousel.css in your projects
       indicator_spacing: 6,
       indicator_cy: 20,
       indicator_stroke: "#afafaf",
-      indicator_strokewidth: "2"
+      indicator_strokewidth: "2",
+      fullscreen: false
     };
 
     function Ocarousel(ocarousel) {
-      var me, _ref, _ref1, _ref10, _ref11, _ref2, _ref3, _ref4, _ref5, _ref6, _ref7, _ref8, _ref9;
+      var me, _ref, _ref1, _ref10, _ref11, _ref12, _ref2, _ref3, _ref4, _ref5, _ref6, _ref7, _ref8, _ref9;
       me = this;
       this.ocarousel = $(ocarousel);
       this.ocarousel_window = $(this.ocarousel).find(".ocarousel_window");
@@ -85,12 +86,15 @@ Include jquery.openCarousel.js and jquery.openCarousel.css in your projects
         this.settings.indicator_cy = (_ref9 = $(this.ocarousel).data('ocarousel-indicator-cy')) != null ? _ref9 : Ocarousel.settings.indicator_cy;
         this.settings.indicator_stroke = (_ref10 = $(this.ocarousel).data('ocarousel-indicator-stroke')) != null ? _ref10 : Ocarousel.settings.indicator_stroke;
         this.settings.indicator_strokewidth = (_ref11 = $(this.ocarousel).data('ocarousel-indicator-strokewidth')) != null ? _ref11 : Ocarousel.settings.indicator_strokewidth;
+        this.settings.fullscreen = (_ref12 = $(this.ocarousel).data('ocarousel-fullscreen')) != null ? _ref12 : Ocarousel.settings.fullscreen;
         this.ocarousel_container = document.createElement("div");
         this.ocarousel_container.className = "ocarousel_window_slides";
         $(this.ocarousel).show();
+        this.timerStop();
         this.render();
         this.ocarousel_window.html("");
         $(this.ocarousel_window).get(0).appendChild(this.ocarousel_container);
+        this.timerStart();
       }
     }
 
@@ -100,15 +104,20 @@ Include jquery.openCarousel.js and jquery.openCarousel.css in your projects
 
     Ocarousel.prototype.render = function() {
       var cx, i, indicator, indicators_svg, me, _i, _ref;
-      this.timerStop();
-      if (this.settings.shuffle === true) {
+      if (this.settings.shuffle && this.settings.shuffle !== "false") {
         this.frames = arrayShuffle(this.frames);
       }
       $(this.ocarousel_container).html("");
       me = this;
       $(this.frames).each(function(i) {
+        if (me.settings.fullscreen && me.settings.fullscreen !== "false") {
+          $(this).css("width", $(window).width());
+        }
         return me.ocarousel_container.appendChild(this);
       });
+      $(me.ocarousel_container).animate({
+        right: me.getPos(me.active) + "px"
+      }, 0);
       if (this.indicators_container.length && document.implementation.hasFeature("http://www.w3.org/TR/SVG11/feature#BasicStructure", "1.1")) {
         $(this.indicators_container).html("");
         indicators_svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
@@ -156,7 +165,10 @@ Include jquery.openCarousel.js and jquery.openCarousel.css in your projects
           return me.scrollTo(goHere);
         }
       });
-      return this.timerStart();
+      $(window).off("resize");
+      return $(window).on("resize", function() {
+        return me.render();
+      });
     };
 
     /* Animate a transition to the given position

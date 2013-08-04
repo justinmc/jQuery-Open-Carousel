@@ -35,13 +35,14 @@ class window.Ocarousel
         transition: "scroll"            # type of transition animation
         perscroll: 1                    # number of slides to pass over for each scroll
         wrapearly: 0                    # scroll to the beginning when reaching this many slides before the end
-        shuffle: false					# setting to true will randomize the order of slides, false will keep the order given in html
+        shuffle: false					        # setting to true will randomize the order of slides, false will keep the order given in html
         indicator_fill: "#ffffff"       # inactive fill color of indicator circles
         indicator_r: 6                  # radius of indicator circles
         indicator_spacing: 6            # spacing between indicators
         indicator_cy: 20                # y position of indicator circles
         indicator_stroke: "#afafaf"     # stroke color of indicator cirlces
         indicator_strokewidth: "2"      # stroke width of indicator circles
+        fullscreen: false               # dynamically sets width of slides to width of screen
 
     constructor: (ocarousel) ->
         me = @
@@ -70,6 +71,7 @@ class window.Ocarousel
             @settings.indicator_cy = $(@ocarousel).data('ocarousel-indicator-cy') ? Ocarousel.settings.indicator_cy
             @settings.indicator_stroke = $(@ocarousel).data('ocarousel-indicator-stroke') ? Ocarousel.settings.indicator_stroke
             @settings.indicator_strokewidth = $(@ocarousel).data('ocarousel-indicator-strokewidth') ? Ocarousel.settings.indicator_strokewidth
+            @settings.fullscreen = $(@ocarousel).data('ocarousel-fullscreen') ? Ocarousel.settings.fullscreen
             
             # Add the container for the slides
             @ocarousel_container = document.createElement("div")
@@ -78,6 +80,9 @@ class window.Ocarousel
             # Let everything be visible
             $(@ocarousel).show()
             
+            # Stop the scroll timer
+            @timerStop()
+        
             # Render the frames and supporting elements from data into the DOM
             @render()
             
@@ -87,20 +92,28 @@ class window.Ocarousel
             # Insert our container with all of the frames into the DOM
             $(@ocarousel_window).get(0).appendChild(@ocarousel_container)
 
+            # Start the scroll timer
+            @timerStart()
+
     ### Remove and reset everything in the DOM ###
     render: () ->
-        # Stop the scroll timer
-        @timerStop()
-        
         # Shuffle the frames if shuffle is configured
-        if @settings.shuffle is true
+        if @settings.shuffle and @settings.shuffle != "false"
             @frames = arrayShuffle(@frames)
         
-        # Clear the frames in the DOM and then inserts all frames from data into the DOM
+        # Clear the frames in the DOM and then inserts all frame from data into the DOM
         $(@ocarousel_container).html("")
         me = @
         $(@frames).each (i) ->
+            # Dynamically set the width of the frames if fullscreen enabled
+            if me.settings.fullscreen and me.settings.fullscreen != "false"
+                $(this).css("width", $(window).width())
+
+            # Insert the frame
             me.ocarousel_container.appendChild(this)
+
+        # Make sure the container is scrolled to the correct position
+        $(me.ocarousel_container).animate({right: me.getPos(me.active) + "px"}, 0)
             
         # Render indicators if the user provided a div
         if @indicators_container.length && document.implementation.hasFeature("http://www.w3.org/TR/SVG11/feature#BasicStructure", "1.1")
@@ -161,10 +174,12 @@ class window.Ocarousel
                     goHere = me.frames.length - 1
 
                 me.scrollTo goHere
+        
+        # Set the screen resize event if fullscreen
+        $(window).off("resize")
+        $(window).on "resize", () ->
+            me.render()
 
-        # Start the scroll timer
-        @timerStart()
-            
     ### Animate a transition to the given position ###
     scrollTo: (index, instant = false) ->
         me = @

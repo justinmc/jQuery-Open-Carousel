@@ -1,0 +1,92 @@
+/**************************************
+jQuery Open Carousel
+Justin McCandless
+justinmccandless.com
+
+Demo CSS file
+***************************************/
+
+body
+{
+	text-align: center;
+	background: #f1f1f1;
+}
+#content {
+    width: 900px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+/* First Example: Info */
+    .example_info .ocarousel_window {
+        background: #ffffff;
+        height: 180px;
+        width: 900px;
+        padding: 4px;
+    }
+        .ocarousel_window_slides div {
+            text-align: center;
+            height: 164px;
+            margin-right: 4px;
+            padding: 8px;
+        }
+        .ocarousel_window_slides div h3 {
+            float: none;
+        }
+        .ocarousel_window_slides div p {
+            text-align: left;
+        }
+        a[data-ocarousel-link] {
+            color: #000000;
+        }
+
+/* Second Example: Photos */
+
+    .example_photos .ocarousel_window {
+        background: #202020;
+        border: 4px #202020 solid;
+        border-radius: 12px;
+        height: 180px;
+        width: 900px;
+    }
+        .example_photos .ocarousel_window_slides img {
+            padding: 8px 16px;
+        }
+        .example_photos_thumbs {
+            text-align: center;
+        }
+        .example_photos_thumbs img {
+            border-top: 3px #ffffff solid;
+            border-left: 3px #ffffff solid;
+            border-right: 3px #ffffff solid;
+            border-bottom: 10px #ffffff solid;
+            box-shadow: #202020 4px 4px 4px;
+        }
+        
+/* Third Example: Text */
+.example_text {
+    text-align: center;
+}
+    .example_text .ocarousel_window {
+        height: 400px;
+        width: 400px;
+        margin: 0 auto;
+        padding: 0;
+    }
+        .example_text .ocarousel_window_slides div {
+            width: 384px;
+            height: 384px;
+        }
+       
+/* Fourth Example: Programmatic */
+.example_programmatic_slide {
+    width: 100px;
+    border: 2px #ffffff solid;
+}
+
+.example_programmatic_controls {
+    width: 260px;
+    height: 60px;
+    float: left;
+}
+

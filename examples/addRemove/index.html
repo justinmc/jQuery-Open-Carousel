@@ -1,0 +1,93 @@
+<!--
+jQuery Open Carousel
+Justin McCandless
+justinmccandless.com
+
+Demo HTML file - Add/Remove
+-->
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>jQuery Open Carousel Demo - By Justin McCandless</title>
+		<link rel = stylesheet type = "text/css" href = "styles/jquery.openCarousel.css"> <!-- In your projects, be sure to include this css file -->
+		<link rel = stylesheet type = "text/css" href = "styles/style_demo_addremove.css">  <!-- This is just for this demos specifically -->
+		<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script> <!-- Include jQuery, duh! -->
+		<script type="text/javascript" src="scripts/jquery.openCarousel.js"></script> 	<!-- And also include the js file -->
+		<script type="text/javascript" src="scripts/example_programmatic.js"></script> 	<!-- This is just for this example -->
+	</head>
+	<body>
+	    <div id="content">
+		    <h1>jQuery Open Carousel - Add/Remove Example</h1>
+		    <p>
+		        by: <a href="http://www.justinmccandless.com">Justin McCandless</a> <br />
+        		github: <a href="http://github.com/justinmc/jQuery-Open-Carousel">github.com/justinmc/jQuery-Open-Carousel</a> <br />
+		    </p>
+		    <br /><br />
+        <p class="description">
+            This project also gives you a programmatic interface to the carousel, so dynamically modifying slides is easy.  This examples shows how to add slides, remove slides, and start/stop the auto scrolling.
+        </p>
+		    <br /><br />
+		    <div class="ocarousel_example_programmatic">
+                <div class="ocarousel_window">
+                    <div class="example_programmatic_slide">
+                        Slide 0
+                    </div>
+                    <div class="example_programmatic_slide">
+                        Slide 1
+                    </div>
+                    <div class="example_programmatic_slide">
+                        Slide 2
+                    </div>
+                    <div class="example_programmatic_slide">
+                        Slide 3
+                    </div>
+                    <div class="example_programmatic_slide">
+                        Slide 4
+                    </div>
+                    <div class="example_programmatic_slide">
+                        Slide 5
+                    </div>
+                    <div class="example_programmatic_slide">
+                        Slide 6
+                    </div>
+                    <div class="example_programmatic_slide">
+                        Slide 7
+                    </div>
+                    <div class="example_programmatic_slide">
+                        Slide 8
+                    </div>
+                    <div class="example_programmatic_slide">
+                        Slide 9
+                    </div>
+                </div>
+                <a href="#" data-ocarousel-link="left">Previous</a>
+                <a href="#" data-ocarousel-link="right">Next</a>
+                &nbsp;
+                <span class="ocarousel_pagination_current"></span>
+                /
+                <span class="ocarousel_pagination_total"></span>
+                <br /><br />
+                <div class="ocarousel_indicators"></div>
+                <br />
+                <div class="example_programmatic_controls">
+                    <input id="add_content" placeholder="Content" />
+                    <input id="add_index" placeholder="Index" />
+                    <button id="add_submit">Add a Slide</button>
+                </div>
+                <div class="example_programmatic_controls">
+                    <input id="remove_index" placeholder="Index" />
+                    <button id="remove_submit">Remove a Slide</button>
+                </div>
+                <div class="example_programmatic_controls">
+                    <button id="play_submit">Play/Pause</button>
+                </div>
+            </div>
+		    <br /><br /><br /><br /><br /><br /><br /><br />
+		    <h4>&copy; Justin McCandless 2013</h4>
+		</div>
+	</body>
+</html>
