@@ -9,7 +9,7 @@ This project is an open and easy to implement carousel display made using jQuery
   </tr>
   <tr>
     <td>Demo:</td>
-    <td>http://www.justinmccandless.com/demos/jQuery-Open-Carousel/index.html</td>
+    <td>http://www.justinmccandless.com/demos/jQuery-Open-Carousel/examples/main/index.html</td>
   </tr>
   <tr>
     <td>Latest Blog Post:</td>
