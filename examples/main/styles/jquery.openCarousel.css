@@ -31,9 +31,13 @@ Include jquery.openCarousel.js and jquery.openCarousel.css in your projects
             width: 50000px;
             white-space: nowrap;
         }
-        .ocarousel_window_slides>* {
+	/* IE6 Hack instead of >* child selector */
+        .ocarousel_window_slides * {
             float: left;
             white-space: normal;
+        }
+        .ocarousel_window_slides * * {
+            float: none;
         }
 .ocarousel_indicators {
     width: 100%;
