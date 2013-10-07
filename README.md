@@ -124,9 +124,13 @@ Open Carousel is also highly configurable using just data attributes.  Here are 
   <tr>
     <td>fullscreen</td>
     <td>false</td>
-    <td>setting to true responsively set the size of the slides to the width of the screen</td>
+    <td>setting to true responsively sets the size of the slides to the width of the screen</td>
   </tr>
   <tr>
+    <td>vertical</td>
+    <td>false</td>
+    <td>setting to true positions slides vertically and scrolls vertically</td>
+  </tr>
   <tr>
     <td>indicator-fill</td>
     <td>#ffffff</td>
