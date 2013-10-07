@@ -1,4 +1,4 @@
-### 
+###
 jQuery Open Carousel
 
 Copyright (c) 2013 Justin McCandless (justinmccandless.com)
@@ -35,7 +35,7 @@ class window.Ocarousel
         transition: "scroll"            # type of transition animation
         perscroll: 1                    # number of slides to pass over for each scroll
         wrapearly: 0                    # scroll to the beginning when reaching this many slides before the end
-        shuffle: false					        # setting to true will randomize the order of slides, false will keep the order given in html
+        shuffle: false					# setting to true will randomize the order of slides, false will keep the order given in html
         indicator_fill: "#ffffff"       # inactive fill color of indicator circles
         indicator_r: 6                  # radius of indicator circles
         indicator_spacing: 6            # spacing between indicators
@@ -43,10 +43,11 @@ class window.Ocarousel
         indicator_stroke: "#afafaf"     # stroke color of indicator cirlces
         indicator_strokewidth: "2"      # stroke width of indicator circles
         fullscreen: false               # dynamically sets width of slides to width of screen
+        vertical: false                 # positions and scrolls slides vertically instead of horizontally
 
     constructor: (ocarousel) ->
         me = @
-        
+
         # Get ocarousel divs
         @ocarousel = $(ocarousel)
         @ocarousel_window = $(@ocarousel).find(".ocarousel_window")
@@ -72,23 +73,24 @@ class window.Ocarousel
             @settings.indicator_stroke = $(@ocarousel).data('ocarousel-indicator-stroke') ? Ocarousel.settings.indicator_stroke
             @settings.indicator_strokewidth = $(@ocarousel).data('ocarousel-indicator-strokewidth') ? Ocarousel.settings.indicator_strokewidth
             @settings.fullscreen = $(@ocarousel).data('ocarousel-fullscreen') ? Ocarousel.settings.fullscreen
-            
+            @settings.vertical = $(@ocarousel).data('ocarousel-vertical') ? Ocarousel.settings.vertical
+
             # Add the container for the slides
             @ocarousel_container = document.createElement("div")
             @ocarousel_container.className = "ocarousel_window_slides"
-            
+
             # Let everything be visible
             $(@ocarousel).show()
-            
+
             # Stop the scroll timer
             @timerStop()
-        
+
             # Render the frames and supporting elements from data into the DOM
             @render()
-            
+
             # Remove the old frames from their original location outside of the container
             @ocarousel_window.html("")
-            
+
             # Insert our container with all of the frames into the DOM
             $(@ocarousel_window).get(0).appendChild(@ocarousel_container)
 
@@ -100,7 +102,7 @@ class window.Ocarousel
         # Shuffle the frames if shuffle is configured
         if @settings.shuffle and @settings.shuffle != "false"
             @frames = arrayShuffle(@frames)
-        
+
         # Clear the frames in the DOM and then inserts all frame from data into the DOM
         $(@ocarousel_container).html("")
         me = @
@@ -109,17 +111,21 @@ class window.Ocarousel
             if me.settings.fullscreen and me.settings.fullscreen != "false"
                 $(this).css("width", $(window).width())
 
+            # Set slides to be vertical if vertical enabled
+            if me.settings.vertical
+                $(this).addClass("ocarousel_window_slides_vertical")
+
             # Insert the frame
             me.ocarousel_container.appendChild(this)
 
         # Make sure the container is scrolled to the correct position
         $(me.ocarousel_container).animate({right: me.getPos(me.active) + "px"}, 0)
-            
+
         # Render indicators if the user provided a div
         if @indicators_container.length && document.implementation.hasFeature("http://www.w3.org/TR/SVG11/feature#BasicStructure", "1.1")
             # Clear the container
             $(@indicators_container).html("")
-            
+
             # Setup the svg itself
             indicators_svg = document.createElementNS("http://www.w3.org/2000/svg", "svg")
             indicators_svg.setAttribute("version", "1.1")
@@ -157,7 +163,7 @@ class window.Ocarousel
         # Setup the pagination total pages
         if @pagination_total.length
             $(@pagination_total).html(@frames.length)
-         
+
         # Reset and set the click event for scroll links
         $(@ocarousel).find("[data-ocarousel-link]").off("click")
         $(@ocarousel).find("[data-ocarousel-link]").on "click", (event) ->
@@ -174,7 +180,7 @@ class window.Ocarousel
                     goHere = me.frames.length - 1
 
                 me.scrollTo goHere
-        
+
         # Set the screen resize event if fullscreen
         $(window).off("resize")
         $(window).on "resize", () ->
@@ -197,17 +203,31 @@ class window.Ocarousel
                 wrapEnd = @frames.length - 1 - @settings.wrapearly
                 index = Math.min(perEnd, wrapEnd)
 
-            # Animate the slides
+            # Move the slides
             $(@ocarousel_container).stop()
             nextPos = @getPos index
+            # No animation
             if instant
-                $(@ocarousel_container).animate({right: nextPos + "px"}, 0)
+                if @settings.vertical
+                    $(@ocarousel_container).animate({top: nextPos + "px"}, 0)
+                else
+                    $(@ocarousel_container).animate({right: nextPos + "px"}, 0)
+            # Fade animation
             else if @settings.transition == "fade"
-                $(@ocarousel_container).fadeOut(@settings.speed, null)
-                .animate({right: nextPos + "px"}, 0)
-                .fadeIn(me.settings.speed)
+                if @settings.vertical
+                    $(@ocarousel_container).fadeOut(@settings.speed, null)
+                    .animate({top: nextPos + "px"}, 0)
+                    .fadeIn(me.settings.speed)
+                else
+                    $(@ocarousel_container).fadeOut(@settings.speed, null)
+                    .animate({right: nextPos + "px"}, 0)
+                    .fadeIn(me.settings.speed)
+            # Slide animation
             else
-                $(@ocarousel_container).animate {right: nextPos + "px"}, @settings.speed
+                if @settings.vertical
+                    $(@ocarousel_container).animate {bottom: nextPos + "px"}, @settings.speed
+                else
+                    $(@ocarousel_container).animate {right: nextPos + "px"}, @settings.speed
 
             # Update the indicators if they exist
             if @indicators?
@@ -223,10 +243,13 @@ class window.Ocarousel
 
             # Resume the scroll timer
             @timerStart()
-            
-    ### Returns the distance of a frame from the left edge of its container ###
+
+    ### Returns the distance of a frame from the beginning edge of its container ###
     getPos: (index) ->
-        return $(@frames[index]).position().left
+        if @settings.vertical
+            return $(@frames[index]).position().top
+        else
+            return $(@frames[index]).position().left
 
     ### Returns the index of the next slide that should be shown ###
     getNext: () ->
@@ -265,27 +288,27 @@ class window.Ocarousel
         me = @
         if @settings.period != Infinity
             @timer = setInterval (() -> me.scrollTo (me.getNext())), @settings.period
-            
+
     ### Stops the scroll timer ###
     timerStop: () ->
         if @timer?
             clearInterval @timer
             @timer = null
-            
+
     ### Starts the timer if it is stopped, stops the timer if it is running ###
     timerToggle: () ->
         if @timer?
             @timerStop()
         else
             @timerStart()
-        
+
     ### Removes a frame, keeping the carousel in an intuitive position afterwards ###
     remove: (index) ->
         if index > 0 and index < (@frames.length - 1)
             # Remove from data and rerender
             @frames.splice(index,1)
             @render()
-            
+
             # If the carousel is ahead of the frame being removed, prevent it from jumping forward
             if @active > index
                 @scrollTo(@active - 1, true)
@@ -295,7 +318,7 @@ class window.Ocarousel
         if index > 0 and index < (@frames.length - 1)
             @frames.splice(index, 0, elt)
             @render()
-            
+
             # If the carousel is ahead of or at the frame being added, prevent it from jumping backward
             if @active >= index
                 @scrollTo(@active + 1, true)
@@ -305,7 +328,7 @@ class window.Ocarousel
     arrayShuffle = (arr) ->
         i = arr.length
         if i == 0 then return false
-        
+
         while --i
             j = Math.floor(Math.random() * (i+1))
             tempi = arr[i]

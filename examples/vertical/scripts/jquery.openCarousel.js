@@ -190,22 +190,36 @@ Include jquery.openCarousel.js and jquery.openCarousel.css in your projects
         }
         $(this.ocarousel_container).stop();
         nextPos = this.getPos(index);
-        if (this.settings.vertical) {
-          $(this.ocarousel_container).animate({
-            bottom: nextPos + "px"
-          }, this.settings.speed);
-        } else if (instant) {
-          $(this.ocarousel_container).animate({
-            right: nextPos + "px"
-          }, 0);
+        if (instant) {
+          if (this.settings.vertical) {
+            $(this.ocarousel_container).animate({
+              top: nextPos + "px"
+            }, 0);
+          } else {
+            $(this.ocarousel_container).animate({
+              right: nextPos + "px"
+            }, 0);
+          }
         } else if (this.settings.transition === "fade") {
-          $(this.ocarousel_container).fadeOut(this.settings.speed, null).animate({
-            right: nextPos + "px"
-          }, 0).fadeIn(me.settings.speed);
+          if (this.settings.vertical) {
+            $(this.ocarousel_container).fadeOut(this.settings.speed, null).animate({
+              top: nextPos + "px"
+            }, 0).fadeIn(me.settings.speed);
+          } else {
+            $(this.ocarousel_container).fadeOut(this.settings.speed, null).animate({
+              right: nextPos + "px"
+            }, 0).fadeIn(me.settings.speed);
+          }
         } else {
-          $(this.ocarousel_container).animate({
-            right: nextPos + "px"
-          }, this.settings.speed);
+          if (this.settings.vertical) {
+            $(this.ocarousel_container).animate({
+              bottom: nextPos + "px"
+            }, this.settings.speed);
+          } else {
+            $(this.ocarousel_container).animate({
+              right: nextPos + "px"
+            }, this.settings.speed);
+          }
         }
         if (this.indicators != null) {
           $(this.indicators[this.active]).attr("fill", this.settings.indicator_fill);
