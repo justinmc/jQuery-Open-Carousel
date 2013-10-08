@@ -132,6 +132,11 @@ Open Carousel is also highly configurable using just data attributes.  Here are 
     <td>setting to true positions slides vertically and scrolls vertically</td>
   </tr>
   <tr>
+    <td>cycle</td>
+    <td>false</td>
+    <td>setting to true sets up an infinitely scrolling carousel instead of jumping back to the beginning/end</td>
+  </tr>
+  <tr>
     <td>indicator-fill</td>
     <td>#ffffff</td>
     <td>inactive fill color of indicator circles</td>

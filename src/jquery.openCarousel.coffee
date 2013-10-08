@@ -24,6 +24,8 @@ class window.Ocarousel
     ocarousel_container: null
     indicators_container: null
     frames: null
+    framesPre: null
+    framesPost: null
     indicators: null
     timer: null
     active: 0
@@ -44,10 +46,11 @@ class window.Ocarousel
         indicator_strokewidth: "2"      # stroke width of indicator circles
         fullscreen: false               # dynamically sets width of slides to width of screen
         vertical: false                 # positions and scrolls slides vertically instead of horizontally
+        cycle: false                    # scrolled slides are appended to the end of the container to create a continuous carousel
 
     constructor: (ocarousel) ->
         me = @
-
+        
         # Get ocarousel divs
         @ocarousel = $(ocarousel)
         @ocarousel_window = $(@ocarousel).find(".ocarousel_window")
@@ -74,6 +77,19 @@ class window.Ocarousel
             @settings.indicator_strokewidth = $(@ocarousel).data('ocarousel-indicator-strokewidth') ? Ocarousel.settings.indicator_strokewidth
             @settings.fullscreen = $(@ocarousel).data('ocarousel-fullscreen') ? Ocarousel.settings.fullscreen
             @settings.vertical = $(@ocarousel).data('ocarousel-vertical') ? Ocarousel.settings.vertical
+            @settings.cycle = $(@ocarousel).data('ocarousel-cycle') ? Ocarousel.settings.cycle
+
+            # Set up for cycle if needed
+            if @settings.cycle
+                # We need 3 copies of the children
+                children = $(@ocarousel_window).children().clone()
+                children2 = $(@ocarousel_window).children().clone()
+                $(@ocarousel_window).append(children)
+                $(@ocarousel_window).append(children2)
+                @frames = $(@ocarousel_window).children()
+
+                # Start at the middle copy of children
+                @active = @frames.length / 3
 
             # Add the container for the slides
             @ocarousel_container = document.createElement("div")
@@ -93,6 +109,9 @@ class window.Ocarousel
 
             # Insert our container with all of the frames into the DOM
             $(@ocarousel_window).get(0).appendChild(@ocarousel_container)
+
+            # Make sure the container is scrolled to the correct position
+            @setContainerPos()
 
             # Start the scroll timer
             @timerStart()
@@ -116,10 +135,7 @@ class window.Ocarousel
                 $(this).addClass("ocarousel_window_slides_vertical")
 
             # Insert the frame
-            me.ocarousel_container.appendChild(this)
-
-        # Make sure the container is scrolled to the correct position
-        $(me.ocarousel_container).animate({right: me.getPos(me.active) + "px"}, 0)
+            $(me.ocarousel_container).append(this)
 
         # Render indicators if the user provided a div
         if @indicators_container.length && document.implementation.hasFeature("http://www.w3.org/TR/SVG11/feature#BasicStructure", "1.1")
@@ -175,9 +191,11 @@ class window.Ocarousel
                 else if goHere == "right" || goHere == "Right" || goHere == "r" || goHere == "R"
                     goHere = me.getNext()
                 else if goHere == "first" || goHere == "First" || goHere == "beginning" || goHere == "Beginning"
-                    goHere = 0
+                    goHere = me.getFirst()
                 else if goHere == "last" || goHere == "Last" || goHere == "end" || goHere == "End"
-                    goHere = me.frames.length - 1
+                    goHere = me.getLast()
+                else if me.settings.cycle
+                    goHere = goHere + me.frames.length / 3
 
                 me.scrollTo goHere
 
@@ -203,15 +221,34 @@ class window.Ocarousel
                 wrapEnd = @frames.length - 1 - @settings.wrapearly
                 index = Math.min(perEnd, wrapEnd)
 
+            # If we're in cycle mode
+            if @settings.cycle
+                # If we're less than the middle set, move the end set to the beginning
+                if index < @frames.length / 3
+                    for i in [@frames.length - 1..2 * (@frames.length / 3)]
+                        $(@frames[i]).remove()
+                        $(@ocarousel_container).prepend(@frames[i])
+                    @active = @active + @frames.length / 3
+                    index = index + @frames.length / 3
+                    @frames = $(@ocarousel_container).children()
+                    @setContainerPos()
+
+                # If we're greater than the end set, move the beginning set to the end
+                if index >= (@frames.length / 3) * 2
+                    for i in [0..@frames.length / 3 - 1]
+                        $(@frames[i]).remove()
+                        $(@ocarousel_container).append(@frames[i])
+                    @active = @active - @frames.length / 3
+                    index = index - @frames.length / 3
+                    @frames = $(@ocarousel_container).children()
+                    @setContainerPos()
+
             # Move the slides
             $(@ocarousel_container).stop()
             nextPos = @getPos index
             # No animation
             if instant
-                if @settings.vertical
-                    $(@ocarousel_container).animate({top: nextPos + "px"}, 0)
-                else
-                    $(@ocarousel_container).animate({right: nextPos + "px"}, 0)
+                @setContainerPos(nextPos)
             # Fade animation
             else if @settings.transition == "fade"
                 if @settings.vertical
@@ -283,6 +320,20 @@ class window.Ocarousel
 
         return prev
 
+    ### Returns the index of the last slide ###
+    getLast: () ->
+        if @settings.cycle
+            return 2 * @frames.length / 3 - 1
+        else
+            return @frames.length - 1
+
+    ### Returns the index of the last slide ###
+    getFirst: () ->
+        if @settings.cycle
+            return @frames.length
+        else
+            return 0
+
     ### Starts or resumes the scroll timer ###
     timerStart: () ->
         me = @
@@ -301,6 +352,13 @@ class window.Ocarousel
             @timerStop()
         else
             @timerStart()
+
+    # Move ocarousel_container to the current active div instantly
+    setContainerPos: (pos = @getPos(@active)) ->
+        if @settings.vertical
+            $(@ocarousel_container).animate({bottom: pos + "px"}, 0)
+        else
+            $(@ocarousel_container).animate({right: pos + "px"}, 0)
 
     ### Removes a frame, keeping the carousel in an intuitive position afterwards ###
     remove: (index) ->

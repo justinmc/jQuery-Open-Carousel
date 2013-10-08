@@ -77,16 +77,4 @@ body
             width: 384px;
             height: 384px;
         }
-       
-/* Fourth Example: Programmatic */
-.example_programmatic_slide {
-    width: 100px;
-    border: 2px #ffffff solid;
-}
-
-.example_programmatic_controls {
-    width: 260px;
-    height: 60px;
-    float: left;
-}
 
