@@ -1,0 +1,59 @@
+<!--
+jQuery Open Carousel
+Justin McCandless
+justinmccandless.com
+
+Demo HTML file - Main
+-->
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>jQuery Open Carousel Demo - By Justin McCandless</title>
+		<link rel = stylesheet type = "text/css" href = "styles/jquery.openCarousel.css"> <!-- In your projects, be sure to include this css file -->
+		<link rel = stylesheet type = "text/css" href = "styles/style_demo.css">  <!-- This is just for these demos specifically -->
+		<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script> <!-- Include jQuery, duh! -->
+		<script type="text/javascript" src="scripts/jquery.openCarousel.js"></script> 	<!-- And also include the js file -->
+		<script type="text/javascript" src="scripts/example_programmatic.js"></script> 	<!-- This is just for the programmatic example -->
+	</head>
+	<body>
+	    <div id="content">
+		    <h1>jQuery Open Carousel - Cycle Example</h1>
+		    <p>
+		        by: <a href="http://www.justinmccandless.com">Justin McCandless</a> <br />
+        		github: <a href="http://github.com/justinmc/jQuery-Open-Carousel">github.com/justinmc/jQuery-Open-Carousel</a> <br />
+		    </p>
+        <p style="text-align: left;">
+           The data-ocarousel-cycle parameter lets your carousel infinitely scroll in a loop, instead of scrolling to the beginning/end of your slides when it reaches the boundary.  This is done by creating 3 copies of your slides, one extra set behind and one ahead of the current position.  These extra sets of slides are moved around where needed to give the perception of an infinite scroll - kind of like a treadmill.
+        </p>
+        <p style="text-align: left;">
+            The only thing you need to worry about is that if your window is bigger than your entire set of slides, you will see duplicate slides at the edges.  Otherwise, just set data-ocarousel-cycle="true" on your ocarousel div like in this example.
+        </p>
+		    <br /><br />
+		    <div class="ocarousel example_photos" data-ocarousel-cycle="true">
+                <div class="ocarousel_window">
+                    <img src="http://www.justinmccandless.com/img/posts/qingdao/qingdao_normal_0.jpg" />
+                    <img src="http://www.justinmccandless.com/img/posts/qingdao/qingdao_normal_1.jpg" />
+                    <img src="http://www.justinmccandless.com/img/posts/qingdao/qingdao_normal_2.jpg" />
+                    <img src="http://www.justinmccandless.com/img/posts/qingdao/qingdao_normal_3.jpg" />
+                    <img src="http://www.justinmccandless.com/img/posts/qingdao/qingdao_normal_4.jpg" />
+                    <img src="http://www.justinmccandless.com/img/posts/qingdao/qingdao_normal_5.jpg" />
+                    <img src="http://www.justinmccandless.com/img/posts/qingdao/qingdao_normal_6.jpg" />
+                    <img src="http://www.justinmccandless.com/img/posts/qingdao/qingdao_normal_7.jpg" />
+                    <img src="http://www.justinmccandless.com/img/posts/qingdao/qingdao_normal_8.jpg" />
+                    <img src="http://www.justinmccandless.com/img/posts/qingdao/qingdao_normal_9.jpg" />
+                    <img src="http://www.justinmccandless.com/img/posts/qingdao/qingdao_normal_10.jpg" />
+                </div>
+                <br />
+                <a href="#" data-ocarousel-link="left" style="float: left;">Previous</a>
+                <a href="#" data-ocarousel-link="right" style="float: right;">Next</a>
+            </div>
+		    </div>
+		    <br /><br /><br /><br /><br /><br /><br /><br />
+		    <h4>&copy; Justin McCandless 2013</h4>
+		</div>
+	</body>
+</html>
