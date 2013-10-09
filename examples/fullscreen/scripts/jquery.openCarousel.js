@@ -120,7 +120,7 @@ Include jquery.openCarousel.js and jquery.openCarousel.css in your projects
 
 
     Ocarousel.prototype.render = function() {
-      var cx, i, indicator, indicators_svg, me, _i, _ref;
+      var cx, end, i, indicator, indicators_svg, length, link, me, start, _i;
       if (this.settings.shuffle && this.settings.shuffle !== "false") {
         this.frames = arrayShuffle(this.frames);
       }
@@ -141,11 +141,20 @@ Include jquery.openCarousel.js and jquery.openCarousel.css in your projects
         indicators_svg.setAttribute("version", "1.1");
         $(this.indicators_container).get(0).appendChild(indicators_svg);
         this.indicators = [];
-        cx = $(this.indicators_container).width() / 2 - this.settings.indicator_r * this.frames.length - this.settings.indicator_spacing * this.frames.length / 2;
-        for (i = _i = 0, _ref = this.frames.length - 1; 0 <= _ref ? _i <= _ref : _i >= _ref; i = 0 <= _ref ? ++_i : --_i) {
+        length = this.frames.length;
+        start = 0;
+        end = this.frames.length - 1;
+        if (this.settings.cycle) {
+          start = this.frames.length / 3;
+          end = 2 * this.frames.length / 3 - 1;
+          length = this.frames.length / 3;
+        }
+        cx = $(this.indicators_container).width() / 2 - this.settings.indicator_r * length - this.settings.indicator_spacing * length / 2;
+        for (i = _i = start; start <= end ? _i <= end : _i >= end; i = start <= end ? ++_i : --_i) {
           indicator = document.createElementNS("http://www.w3.org/2000/svg", "circle");
           indicator.className = "ocarousel_link";
-          indicator.setAttribute("data-ocarousel-link", i);
+          link = !this.settings.cycle ? i : i % (this.frames.length / 3);
+          indicator.setAttribute("data-ocarousel-link", link);
           indicator.setAttribute("cx", cx);
           indicator.setAttribute("cy", this.settings.indicator_cy);
           indicator.setAttribute("r", this.settings.indicator_r);
@@ -195,7 +204,7 @@ Include jquery.openCarousel.js and jquery.openCarousel.css in your projects
 
 
     Ocarousel.prototype.scrollTo = function(index, instant) {
-      var i, me, nextPos, perEnd, wrapEnd, _i, _j, _ref, _ref1, _ref2;
+      var i, indNew, indOld, me, nextPos, perEnd, wrapEnd, _i, _j, _ref, _ref1, _ref2;
       if (instant == null) {
         instant = false;
       }
@@ -259,8 +268,14 @@ Include jquery.openCarousel.js and jquery.openCarousel.css in your projects
           }
         }
         if (this.indicators != null) {
-          $(this.indicators[this.active]).attr("fill", this.settings.indicator_fill);
-          $(this.indicators[index]).attr("fill", this.settings.indicator_stroke);
+          indOld = this.active;
+          indNew = index;
+          if (this.settings.cycle) {
+            indOld = indOld % (this.frames.length / 3);
+            indNew = indNew % (this.frames.length / 3);
+          }
+          $(this.indicators[indOld]).attr("fill", this.settings.indicator_fill);
+          $(this.indicators[indNew]).attr("fill", this.settings.indicator_stroke);
         }
         this.active = index;
         if (this.pagination_current.length) {

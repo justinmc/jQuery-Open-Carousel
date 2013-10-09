@@ -149,12 +149,20 @@ class window.Ocarousel
 
             # Reset and setup the circle indicators
             @indicators = []
-            cx = $(@indicators_container).width() / 2 - @settings.indicator_r * @frames.length - @settings.indicator_spacing * @frames.length / 2
-            for i in [0..@frames.length - 1]
+            length = @frames.length
+            start = 0
+            end = @frames.length - 1
+            if @settings.cycle
+                start = @frames.length / 3
+                end = 2 * @frames.length / 3 - 1
+                length = @frames.length / 3
+            cx = $(@indicators_container).width() / 2 - @settings.indicator_r * length - @settings.indicator_spacing * length / 2
+            for i in [start..end]
                 # Create an indicator
                 indicator = document.createElementNS("http://www.w3.org/2000/svg", "circle")
                 indicator.className = "ocarousel_link"
-                indicator.setAttribute("data-ocarousel-link", i)
+                link = if !@settings.cycle then i else i % (@frames.length / 3)
+                indicator.setAttribute("data-ocarousel-link", link)
                 indicator.setAttribute("cx", cx)
                 indicator.setAttribute("cy", @settings.indicator_cy)
                 indicator.setAttribute("r", @settings.indicator_r)
@@ -268,8 +276,13 @@ class window.Ocarousel
 
             # Update the indicators if they exist
             if @indicators?
-                $(@indicators[@active]).attr "fill", @settings.indicator_fill
-                $(@indicators[index]).attr "fill", @settings.indicator_stroke
+                indOld = @active
+                indNew = index
+                if @settings.cycle
+                    indOld = indOld % (@frames.length / 3)
+                    indNew = indNew % (@frames.length / 3)
+                $(@indicators[indOld]).attr "fill", @settings.indicator_fill
+                $(@indicators[indNew]).attr "fill", @settings.indicator_stroke
 
             # Update the active variable
             @active = index
