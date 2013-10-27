@@ -71,6 +71,9 @@ You can also very easily create a line of SVG circles that fill up to represent 
 <div class="ocarousel_indicators"></div>
 ```
 
+#### Fallback for no SVG Support
+SVG was choosen for the indicators because of how easy it is to programmatically change things like size and color (see the Configuration section for how to do this with configuration parameters).  However, older versions of IE don't support SVG.  In this case, ocarousel will fallback to using the indicatorsSVGFallback.png image included in the project (include this in your images folder by default).  If you want to include a different image fallback, override the .ocarousel_indicator styles in jquery.openCarousel.css.
+
 ### Pagination
 
 Open Carouesel can also allow you to display numbers showing the total number of slides and the current slide.  Just add the class `ocarousel_pagination_current` and/or `ocarousel_pagination_total` to the element whose html you want replaced with the current and total page numbers, respectively.  So an implementation might look like this:

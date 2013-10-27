@@ -56,3 +56,18 @@ Include jquery.openCarousel.js and jquery.openCarousel.css in your projects
     cursor: pointer;
 }
 
+/* Fallback indicators for no SVG support */
+.ocarousel_indicator {
+    display: inline-block;
+    height: 16px;
+    width: 16px;
+    margin: 0 1px;
+    cursor: pointer;
+}
+.ocarousel_indicator_active {
+    background: url('../images/indicatorsSVGFallback.png') 0 0;
+}
+.ocarousel_indicator_inactive {
+    background: url('../images/indicatorsSVGFallback.png') -16px 0;
+}
+
