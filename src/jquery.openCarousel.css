@@ -62,7 +62,12 @@ Include jquery.openCarousel.js and jquery.openCarousel.css in your projects
     height: 16px;
     width: 16px;
     margin: 0 1px;
+    overflow: hidden;
     cursor: pointer;
+
+    /* IE 8< inline-block fix */
+    *display: inline;
+    zoom: 1;
 }
 .ocarousel_indicator_active {
     background: url('../images/indicatorsSVGFallback.png') 0 0;
