@@ -199,8 +199,8 @@ class window.Ocarousel
             $(@pagination_total).html(@frames.length)
 
         # Reset and set the click event for scroll links
-        $(@ocarousel).find("[data-ocarousel-link]").off("click")
-        $(@ocarousel).find("[data-ocarousel-link]").on "click", (event) ->
+        $(@ocarousel).find("[data-ocarousel-link]").unbind("click")
+        $(@ocarousel).find("[data-ocarousel-link]").bind "click", (event) ->
             event.preventDefault()
             goHere = $(this).data("ocarousel-link")
             if goHere?
@@ -218,8 +218,8 @@ class window.Ocarousel
                 me.scrollTo goHere
 
         # Set the screen resize event if fullscreen
-        $(window).off("resize")
-        $(window).on "resize", () ->
+        $(window).unbind("resize")
+        $(window).bind "resize", () ->
             me.render()
 
     ### Animate a transition to the given position ###
