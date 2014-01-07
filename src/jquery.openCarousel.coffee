@@ -54,7 +54,7 @@ class window.Ocarousel
         # Get ocarousel divs
         @ocarousel = $(ocarousel)
         @ocarousel_window = $(@ocarousel).find(".ocarousel_window")
-        @frames = $(@ocarousel_window).children()
+        @frames = $(@ocarousel_window).children().clone()
         @indicators_container = $(@ocarousel).find(".ocarousel_indicators")
         @pagination_current = $(@ocarousel).find(".ocarousel_pagination_current")
         @pagination_total = $(@ocarousel).find(".ocarousel_pagination_total")
@@ -101,14 +101,14 @@ class window.Ocarousel
             # Stop the scroll timer
             @timerStop()
 
-            # Render the frames and supporting elements from data into the DOM
-            @render()
-
             # Remove the old frames from their original location outside of the container
             @ocarousel_window.html("")
 
             # Insert our container with all of the frames into the DOM
             $(@ocarousel_window).get(0).appendChild(@ocarousel_container)
+
+            # Render the frames and supporting elements from data into the DOM
+            @render()
 
             # Make sure the container is scrolled to the correct position
             @setContainerPos()
