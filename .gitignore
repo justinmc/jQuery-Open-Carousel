@@ -1,4 +1,5 @@
 *~
 *.swp
 carousel
+.DS_Store
 
