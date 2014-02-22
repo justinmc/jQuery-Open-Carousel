@@ -201,6 +201,13 @@ This simply creates a new Ocarousel object for every .ocarousel class on the pag
 
 Your application might have a need to programmatically access the Ocarousel object after it's initial creation, and if so, you should save a reference to it!  This will allow you to easily do things like programmatic scrolling or adding and removing slides while the carousel is running.
 
+#### Public Attribute onSlideChanged
+
+This attribute is one of the most powerful ways to add custom behavior to Ocarousel.  `onSlideChanged` is an attribute on each ocarousel instance, and if set to a function, it will be called at each slide changed.  The parameters passed to it will be `index, indexOld`, indicating the indices of the slides involved.
+
+    ocarousel.onSlideChanged = (index, indexOld) ->
+        console.log 'Hello, the carousel just finished changing from slide', indexOld, 'to slide', index
+
 #### Public Methods
 
 If you've got an instance of Ocarousel that you'd like to interface with programmatically, these public methods are the best way to do it.

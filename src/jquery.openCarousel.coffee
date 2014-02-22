@@ -30,6 +30,9 @@ class window.Ocarousel
     timer: null
     active: 0
 
+    ### Public callback ###
+    onSlideChanged: null
+
     ### Default Settings ###
     @settings:
         speed: .5 * 1000                # how long each transition is, milliseconds
@@ -303,6 +306,7 @@ class window.Ocarousel
                     $(@indicators[indNew]).removeClass("ocarousel_indicator_inactive")
 
             # Update the active variable
+            indexOld = @active
             @active = index
 
             # Update the current pagination number if it exists
@@ -311,6 +315,10 @@ class window.Ocarousel
 
             # Resume the scroll timer
             @timerStart()
+
+            # Call the provided callback if it exists
+            if typeof @onSlideChanged is 'function'
+                @onSlideChanged(index, indexOld)
 
     ### Returns the distance of a frame from the beginning edge of its container ###
     getPos: (index) ->

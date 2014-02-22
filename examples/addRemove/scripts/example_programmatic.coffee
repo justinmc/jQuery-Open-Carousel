@@ -1,8 +1,8 @@
 ###
 This is a demo coffeescript file for the programmatic example
 
-The .ocarousel-example-programmatic carousel is NOT initialized automatically 
-in the main coffeescript file, because it does not include the .ocarousel 
+The .ocarousel-example-programmatic carousel is NOT initialized automatically
+in the main coffeescript file, because it does not include the .ocarousel
 class.  All setup is done here.
 ###
 
@@ -11,7 +11,7 @@ $(document).ready ->
 
     # Initialize it
     ocarouselProg = new Ocarousel($(".ocarousel_example_programmatic"))
-    
+
     # Click event for adding a slide
     $('button#add_submit').on 'click', () ->
         frame = document.createElement("div")
@@ -28,4 +28,8 @@ $(document).ready ->
     # Click event for starting/stopping periodic scrolling
     $('button#play_submit').on 'click', () ->
         ocarouselProg.timerToggle()
+
+    # Callback for slide changed, just log it as a demo
+    ocarouselProg.onSlideChanged = (index, indexOld) ->
+        console.log 'Hey! The active slide changed.', index, indexOld
 
