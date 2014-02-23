@@ -1,0 +1,32 @@
+{
+  "name": "jQuery-Open-Carousel",
+  "version": "1.2.0",
+  "description": "A simple and open carousel",
+  "main": "src/jQuery.openCarousel.js",
+  "directories": {
+    "example": "examples"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/justinmc/jQuery-Open-Carousel.git"
+  },
+  "keywords": [
+    "carousel",
+    "jQuery",
+    "open"
+  ],
+  "author": "Justin McCandless",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/justinmc/jQuery-Open-Carousel/issues"
+  },
+  "homepage": "https://github.com/justinmc/jQuery-Open-Carousel",
+  "devDependencies": {
+    "gulp": "^3.5.2",
+    "gulp-coffee": "^1.4.1",
+    "gulp-clean": "^0.2.4"
+  }
+}
