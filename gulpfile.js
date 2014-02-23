@@ -1,7 +1,9 @@
-gulp = require('gulp');
+var gulp = require('gulp');
 
-clean = require('gulp-clean');
-coffee = require('gulp-coffee');
+var clean = require('gulp-clean');
+var coffee = require('gulp-coffee');
+var uglify = require('gulp-uglify');
+var concat = require('gulp-concat');
 
 var bases = {
     src: 'src/',
@@ -11,6 +13,7 @@ var bases = {
 var paths = {
     compiled: [
         bases.src + 'jquery.openCarousel.js',
+        bases.src + 'jquery.openCarousel.min.js',
         bases.examples + 'addRemove/scripts/jquery.openCarousel.js',
         bases.examples + 'cycle/scripts/jquery.openCarousel.js',
         bases.examples + 'fullscreen/scripts/jquery.openCarousel.js',
@@ -27,9 +30,17 @@ gulp.task('clean', function() {
 
 // Compile coffeescript in the src directory
 gulp.task('coffee', function() {
-    gulp.src('src/jquery.openCarousel.coffee')
+    gulp.src(bases.src + 'jquery.openCarousel.coffee')
         .pipe(coffee())
         .pipe(gulp.dest(bases.src));
+});
+
+// Create a minified version of the main script
+gulp.task('uglify', function() {
+    gulp.src(bases.src + 'jquery.openCarousel.js')
+    .pipe(uglify())
+    .pipe(concat('jquery.openCarousel.min.js'))
+    .pipe(gulp.dest(bases.src));
 });
 
 // Copy compiled javascript to example directories
@@ -42,5 +53,5 @@ gulp.task('copy', function() {
         .pipe(gulp.dest(bases.examples + 'vertical/scripts/'));
 });
 
-gulp.task('default', ['clean', 'coffee', 'copy']);
+gulp.task('default', ['clean', 'coffee', 'uglify', 'copy']);
 
