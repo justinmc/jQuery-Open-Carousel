@@ -29,6 +29,8 @@
     "gulp-coffee": "^1.4.1",
     "gulp-clean": "^0.2.4",
     "gulp-uglify": "^0.2.1",
-    "gulp-concat": "^2.1.7"
+    "gulp-concat": "^2.1.7",
+    "gulp-mocha": "^0.4.1",
+    "jsdom": "^0.10.1"
   }
 }

@@ -1,5 +1,6 @@
 var gulp = require('gulp');
 
+var mocha = require('gulp-mocha');
 var clean = require('gulp-clean');
 var coffee = require('gulp-coffee');
 var uglify = require('gulp-uglify');
@@ -38,9 +39,9 @@ gulp.task('coffee', function() {
 // Create a minified version of the main script
 gulp.task('uglify', function() {
     gulp.src(bases.src + 'jquery.openCarousel.js')
-    .pipe(uglify())
-    .pipe(concat('jquery.openCarousel.min.js'))
-    .pipe(gulp.dest(bases.src));
+        .pipe(uglify())
+        .pipe(concat('jquery.openCarousel.min.js'))
+        .pipe(gulp.dest(bases.src));
 });
 
 // Copy compiled javascript to example directories
@@ -53,5 +54,11 @@ gulp.task('copy', function() {
         .pipe(gulp.dest(bases.examples + 'vertical/scripts/'));
 });
 
-gulp.task('default', ['clean', 'coffee', 'uglify', 'copy']);
+// Run the tests
+gulp.task('test', function() {
+    gulp.src('test/test.js')
+        .pipe(mocha({reporter: 'nyan'}));
+});
+
+gulp.task('default', ['clean', 'coffee', 'uglify', 'copy', 'test']);
 
