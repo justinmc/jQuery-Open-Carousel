@@ -60,5 +60,10 @@ gulp.task('test', function() {
         .pipe(mocha({reporter: 'nyan'}));
 });
 
+// Watch for in development
+gulp.task('watch', function() {
+    gulp.watch(bases.src + 'jquery.openCarousel.coffee', ['coffee', 'copy']);
+});
+
 gulp.task('default', ['clean', 'coffee', 'uglify', 'copy', 'test']);
 
