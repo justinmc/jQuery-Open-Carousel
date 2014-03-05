@@ -221,9 +221,10 @@ class window.Ocarousel
                 me.scrollTo goHere
 
         # Set the screen resize event if fullscreen
-        $(window).unbind("resize")
-        $(window).bind "resize", () ->
-            me.render()
+        if @settings.fullscreen
+            $(window).unbind("resize")
+            $(window).bind "resize", () ->
+                me.render()
 
     ### Animate a transition to the given position ###
     scrollTo: (index, instant = false) ->

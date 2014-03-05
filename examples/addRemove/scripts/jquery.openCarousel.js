@@ -202,10 +202,12 @@ Include jquery.openCarousel.js and jquery.openCarousel.css in your projects
           return me.scrollTo(goHere);
         }
       });
-      $(window).unbind("resize");
-      return $(window).bind("resize", function() {
-        return me.render();
-      });
+      if (this.settings.fullscreen) {
+        $(window).unbind("resize");
+        return $(window).bind("resize", function() {
+          return me.render();
+        });
+      }
     };
 
 
