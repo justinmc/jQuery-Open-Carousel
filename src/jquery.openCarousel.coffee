@@ -131,7 +131,8 @@ class window.Ocarousel
         $(@frames).each (i) ->
             # Dynamically set the width of the frames if fullscreen enabled
             if me.settings.fullscreen and me.settings.fullscreen != "false"
-                $(this).css("width", $(window).width())
+                console.log('sssetting width of frame to ', $(me.ocarousel_window).width())
+                $(this).css("width", $(me.ocarousel_window).width())
 
             # Set slides to be vertical if vertical enabled
             if me.settings.vertical

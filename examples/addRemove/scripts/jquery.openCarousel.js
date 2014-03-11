@@ -127,7 +127,8 @@ Include jquery.openCarousel.js and jquery.openCarousel.css in your projects
       me = this;
       $(this.frames).each(function(i) {
         if (me.settings.fullscreen && me.settings.fullscreen !== "false") {
-          $(this).css("width", $(window).width());
+          console.log('sssetting width of frame to ', $(me.ocarousel_window).width());
+          $(this).css("width", $(me.ocarousel_window).width());
         }
         if (me.settings.vertical) {
           $(this).addClass("ocarousel_window_slides_vertical");
