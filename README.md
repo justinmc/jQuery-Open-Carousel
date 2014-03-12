@@ -52,6 +52,10 @@ This simple setup will immediately start working (don't forget to include the Op
 
 Open Carousel has a few basic features that many users will find themselves needing.
 
+### Responsive
+
+Open Carousel calculates the positions to moves slides to dynamically, so TODO
+
 ### Links to Slides
 
 Many people will want to include forward/back buttons to allow their users to navigate, or even more advanced things like first/last buttons or links to specific slides (like if you want linked thumbnails representing each slide).  This is all easily possible using the link system.
@@ -125,9 +129,9 @@ Open Carousel is also highly configurable using just data attributes.  Here are 
     <td>setting to true will randomize the order of slides, false will keep the order given in html</td>
   </tr>
   <tr>
-    <td>fullscreen</td>
+    <td>fullwidth</td>
     <td>false</td>
-    <td>setting to true responsively sets the size of the slides to the width of the screen</td>
+    <td>setting to true responsively sets the size of the slides to the width of the carousel window div</td>
   </tr>
   <tr>
     <td>vertical</td>

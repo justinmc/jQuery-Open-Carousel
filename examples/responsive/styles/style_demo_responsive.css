@@ -1,0 +1,37 @@
+/**************************************
+jQuery Open Carousel
+Justin McCandless
+justinmccandless.com
+
+Demo CSS file
+***************************************/
+
+body
+{
+    margin: 0;
+    text-align: center;
+    background: #f1f1f1;
+}
+#content {
+    width: 100%;
+    margin: 0 auto;
+    text-align: center;
+}
+
+/* Responsive Example */
+    .example_responsive {
+        /*position: relative;*/
+    }
+
+    .example_responsive .ocarousel_window {
+        background: #ffffff;
+        width: 100%;
+        margin: 0 auto;
+    }
+
+        .ocarousel_window .slide {
+            width: 400px;
+            padding: 16px;
+            text-align: left;
+        }
+

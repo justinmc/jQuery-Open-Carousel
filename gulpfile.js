@@ -17,7 +17,8 @@ var paths = {
         bases.src + 'jquery.openCarousel.min.js',
         bases.examples + 'addRemove/scripts/jquery.openCarousel.js',
         bases.examples + 'cycle/scripts/jquery.openCarousel.js',
-        bases.examples + 'fullscreen/scripts/jquery.openCarousel.js',
+        bases.examples + 'fullwidth/scripts/jquery.openCarousel.js',
+        bases.examples + 'responsive/scripts/jquery.openCarousel.js',
         bases.examples + 'main/scripts/jquery.openCarousel.js',
         bases.examples + 'vertical/scripts/jquery.openCarousel.js'
     ]
@@ -44,14 +45,23 @@ gulp.task('uglify', function() {
         .pipe(gulp.dest(bases.src));
 });
 
-// Copy compiled javascript to example directories
+// Copy compiled javascript and css to example directories
 gulp.task('copy', function() {
     gulp.src('src/jquery.openCarousel.js')
         .pipe(gulp.dest(bases.examples + 'addRemove/scripts/'))
         .pipe(gulp.dest(bases.examples + 'cycle/scripts/'))
-        .pipe(gulp.dest(bases.examples + 'fullscreen/scripts/'))
+        .pipe(gulp.dest(bases.examples + 'fullwidth/scripts/'))
+        .pipe(gulp.dest(bases.examples + 'responsive/scripts/'))
         .pipe(gulp.dest(bases.examples + 'main/scripts/'))
         .pipe(gulp.dest(bases.examples + 'vertical/scripts/'));
+
+    gulp.src('src/jquery.openCarousel.css')
+        .pipe(gulp.dest(bases.examples + 'addRemove/styles/'))
+        .pipe(gulp.dest(bases.examples + 'cycle/styles/'))
+        .pipe(gulp.dest(bases.examples + 'fullwidth/styles/'))
+        .pipe(gulp.dest(bases.examples + 'responsive/styles/'))
+        .pipe(gulp.dest(bases.examples + 'main/styles/'))
+        .pipe(gulp.dest(bases.examples + 'vertical/styles/'));
 });
 
 // Run the tests

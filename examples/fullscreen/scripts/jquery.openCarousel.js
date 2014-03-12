@@ -64,7 +64,7 @@ Include jquery.openCarousel.js and jquery.openCarousel.css in your projects
       indicator_cy: 20,
       indicator_stroke: "#afafaf",
       indicator_strokewidth: "2",
-      fullscreen: false,
+      fullwidth: false,
       vertical: false,
       cycle: false
     };
@@ -92,7 +92,7 @@ Include jquery.openCarousel.js and jquery.openCarousel.css in your projects
         this.settings.indicator_cy = (_ref9 = $(this.ocarousel).data('ocarousel-indicator-cy')) != null ? _ref9 : Ocarousel.settings.indicator_cy;
         this.settings.indicator_stroke = (_ref10 = $(this.ocarousel).data('ocarousel-indicator-stroke')) != null ? _ref10 : Ocarousel.settings.indicator_stroke;
         this.settings.indicator_strokewidth = (_ref11 = $(this.ocarousel).data('ocarousel-indicator-strokewidth')) != null ? _ref11 : Ocarousel.settings.indicator_strokewidth;
-        this.settings.fullscreen = (_ref12 = $(this.ocarousel).data('ocarousel-fullscreen')) != null ? _ref12 : Ocarousel.settings.fullscreen;
+        this.settings.fullwidth = (_ref12 = $(this.ocarousel).data('ocarousel-fullwidth')) != null ? _ref12 : Ocarousel.settings.fullwidth;
         this.settings.vertical = (_ref13 = $(this.ocarousel).data('ocarousel-vertical')) != null ? _ref13 : Ocarousel.settings.vertical;
         this.settings.cycle = (_ref14 = $(this.ocarousel).data('ocarousel-cycle')) != null ? _ref14 : Ocarousel.settings.cycle;
         if (this.settings.cycle) {
@@ -126,7 +126,7 @@ Include jquery.openCarousel.js and jquery.openCarousel.css in your projects
       $(this.ocarousel_container).html("");
       me = this;
       $(this.frames).each(function(i) {
-        if (me.settings.fullscreen && me.settings.fullscreen !== "false") {
+        if (me.settings.fullwidth && me.settings.fullwidth !== "false") {
           console.log('sssetting width of frame to ', $(me.ocarousel_window).width());
           $(this).css("width", $(me.ocarousel_window).width());
         }
@@ -203,7 +203,7 @@ Include jquery.openCarousel.js and jquery.openCarousel.css in your projects
           return me.scrollTo(goHere);
         }
       });
-      if (this.settings.fullscreen) {
+      if (this.settings.fullwidth) {
         $(window).unbind("resize");
         return $(window).bind("resize", function() {
           return me.render();

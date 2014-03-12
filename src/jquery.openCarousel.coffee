@@ -47,7 +47,7 @@ class window.Ocarousel
         indicator_cy: 20                # y position of indicator circles
         indicator_stroke: "#afafaf"     # stroke color of indicator cirlces
         indicator_strokewidth: "2"      # stroke width of indicator circles
-        fullscreen: false               # dynamically sets width of slides to width of screen
+        fullwidth: false                # dynamically sets width of slides to width of the window div
         vertical: false                 # positions and scrolls slides vertically instead of horizontally
         cycle: false                    # scrolled slides are appended to the end of the container to create a continuous carousel
 
@@ -78,7 +78,7 @@ class window.Ocarousel
             @settings.indicator_cy = $(@ocarousel).data('ocarousel-indicator-cy') ? Ocarousel.settings.indicator_cy
             @settings.indicator_stroke = $(@ocarousel).data('ocarousel-indicator-stroke') ? Ocarousel.settings.indicator_stroke
             @settings.indicator_strokewidth = $(@ocarousel).data('ocarousel-indicator-strokewidth') ? Ocarousel.settings.indicator_strokewidth
-            @settings.fullscreen = $(@ocarousel).data('ocarousel-fullscreen') ? Ocarousel.settings.fullscreen
+            @settings.fullwidth = $(@ocarousel).data('ocarousel-fullwidth') ? Ocarousel.settings.fullwidth
             @settings.vertical = $(@ocarousel).data('ocarousel-vertical') ? Ocarousel.settings.vertical
             @settings.cycle = $(@ocarousel).data('ocarousel-cycle') ? Ocarousel.settings.cycle
 
@@ -129,8 +129,8 @@ class window.Ocarousel
         $(@ocarousel_container).html("")
         me = @
         $(@frames).each (i) ->
-            # Dynamically set the width of the frames if fullscreen enabled
-            if me.settings.fullscreen and me.settings.fullscreen != "false"
+            # Dynamically set the width of the frames if fullwidth enabled
+            if me.settings.fullwidth and me.settings.fullwidth != "false"
                 console.log('sssetting width of frame to ', $(me.ocarousel_window).width())
                 $(this).css("width", $(me.ocarousel_window).width())
 
@@ -164,7 +164,9 @@ class window.Ocarousel
                 start = @frames.length / 3
                 end = 2 * @frames.length / 3 - 1
                 length = @frames.length / 3
-            cx = $(@indicators_container).width() / 2 - @settings.indicator_r * length - @settings.indicator_spacing * length / 2
+            svgWidth = @settings.indicator_r * 2 * length + @settings.indicator_spacing * (length - 1)
+            indicators_parent.setAttribute("width", svgWidth + "px")
+            cx = @settings.indicator_r
             for i in [start..end]
                 # Create an indicator as SVG if supported
                 link = if !@settings.cycle then i else i % (@frames.length / 3)
@@ -221,8 +223,8 @@ class window.Ocarousel
 
                 me.scrollTo goHere
 
-        # Set the screen resize event if fullscreen
-        if @settings.fullscreen
+        # Set the screen resize event if fullwidth
+        if @settings.fullwidth
             $(window).unbind("resize")
             $(window).bind "resize", () ->
                 me.render()
