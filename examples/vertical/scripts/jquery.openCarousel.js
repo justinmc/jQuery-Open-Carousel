@@ -203,8 +203,7 @@ Include jquery.openCarousel.js and jquery.openCarousel.css in your projects
         }
       });
       if (this.settings.fullscreen) {
-        $(window).unbind("resize");
-        return $(window).bind("resize", function() {
+        return $(window).one("resize", function() {
           return me.render();
         });
       }
