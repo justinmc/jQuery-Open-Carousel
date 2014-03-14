@@ -225,8 +225,7 @@ class window.Ocarousel
 
         # Set the screen resize event if fullwidth
         if @settings.fullwidth
-            $(window).unbind("resize")
-            $(window).bind "resize", () ->
+            $(window).one "resize", () ->
                 me.render()
 
     ### Animate a transition to the given position ###
