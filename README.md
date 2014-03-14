@@ -54,7 +54,7 @@ Open Carousel has a few basic features that many users will find themselves need
 
 ### Responsive
 
-Open Carousel calculates the positions to moves slides to dynamically, so TODO
+Open Carousel works nicely with any responsive layout you might throw it in.  Check out the responsive example at examples/responsive for more, or the fullwidth example if you want slides that fill their container at any screen size.
 
 ### Links to Slides
 

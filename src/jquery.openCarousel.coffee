@@ -164,9 +164,9 @@ class window.Ocarousel
                 start = @frames.length / 3
                 end = 2 * @frames.length / 3 - 1
                 length = @frames.length / 3
-            svgWidth = @settings.indicator_r * 2 * length + @settings.indicator_spacing * (length - 1)
+            svgWidth = @settings.indicator_r * 2 * length + @settings.indicator_spacing * length
             indicators_parent.setAttribute("width", svgWidth + "px")
-            cx = @settings.indicator_r
+            cx = @settings.indicator_r + @settings.indicator_spacing
             for i in [start..end]
                 # Create an indicator as SVG if supported
                 link = if !@settings.cycle then i else i % (@frames.length / 3)

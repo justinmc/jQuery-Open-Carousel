@@ -153,9 +153,9 @@ Include jquery.openCarousel.js and jquery.openCarousel.css in your projects
           end = 2 * this.frames.length / 3 - 1;
           length = this.frames.length / 3;
         }
-        svgWidth = this.settings.indicator_r * 2 * length + this.settings.indicator_spacing * (length - 1);
+        svgWidth = this.settings.indicator_r * 2 * length + this.settings.indicator_spacing * length;
         indicators_parent.setAttribute("width", svgWidth + "px");
-        cx = this.settings.indicator_r;
+        cx = this.settings.indicator_r + this.settings.indicator_spacing;
         for (i = _i = start; start <= end ? _i <= end : _i >= end; i = start <= end ? ++_i : --_i) {
           link = !this.settings.cycle ? i : i % (this.frames.length / 3);
           if (document.implementation.hasFeature("http://www.w3.org/TR/SVG11/feature#BasicStructure", "1.1")) {

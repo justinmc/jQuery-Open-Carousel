@@ -25,13 +25,27 @@ body
 
     .example_responsive .ocarousel_window {
         background: #ffffff;
-        width: 100%;
+        width: 1320px;
+        height: 400px;
         margin: 0 auto;
     }
 
         .ocarousel_window .slide {
-            width: 400px;
+            width: 300px;
             padding: 16px;
             text-align: left;
         }
 
+@media (max-width: 1320px) {
+
+    .example_responsive .ocarousel_window {
+        width: 660px;
+    }
+}
+
+@media (max-width: 660px) {
+
+    .example_responsive .ocarousel_window {
+        width: 330px;
+    }
+}
