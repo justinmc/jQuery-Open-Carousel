@@ -26,35 +26,27 @@ var paths = {
 
 // Delete all generated js files
 gulp.task('clean', function() {
-    gulp.src(paths.compiled)
+    return gulp.src(paths.compiled)
         .pipe(clean());
 });
 
 // Compile coffeescript in the src directory
-gulp.task('coffee', function() {
-    gulp.src(bases.src + 'jquery.openCarousel.coffee')
+gulp.task('coffee', ['clean'], function() {
+    return gulp.src(bases.src + 'jquery.openCarousel.coffee')
         .pipe(coffee())
         .pipe(gulp.dest(bases.src));
 });
 
 // Create a minified version of the main script
-gulp.task('uglify', function() {
-    gulp.src(bases.src + 'jquery.openCarousel.js')
+gulp.task('uglify', ['clean', 'coffee'], function() {
+    return gulp.src(bases.src + 'jquery.openCarousel.js')
         .pipe(uglify())
         .pipe(concat('jquery.openCarousel.min.js'))
         .pipe(gulp.dest(bases.src));
 });
 
 // Copy compiled javascript and css to example directories
-gulp.task('copy', function() {
-    gulp.src('src/jquery.openCarousel.js')
-        .pipe(gulp.dest(bases.examples + 'addRemove/scripts/'))
-        .pipe(gulp.dest(bases.examples + 'cycle/scripts/'))
-        .pipe(gulp.dest(bases.examples + 'fullwidth/scripts/'))
-        .pipe(gulp.dest(bases.examples + 'responsive/scripts/'))
-        .pipe(gulp.dest(bases.examples + 'main/scripts/'))
-        .pipe(gulp.dest(bases.examples + 'vertical/scripts/'));
-
+gulp.task('copy', ['clean', 'coffee', 'uglify'], function() {
     gulp.src('src/jquery.openCarousel.css')
         .pipe(gulp.dest(bases.examples + 'addRemove/styles/'))
         .pipe(gulp.dest(bases.examples + 'cycle/styles/'))
@@ -62,11 +54,19 @@ gulp.task('copy', function() {
         .pipe(gulp.dest(bases.examples + 'responsive/styles/'))
         .pipe(gulp.dest(bases.examples + 'main/styles/'))
         .pipe(gulp.dest(bases.examples + 'vertical/styles/'));
+
+    return gulp.src('src/jquery.openCarousel.js')
+        .pipe(gulp.dest(bases.examples + 'addRemove/scripts/'))
+        .pipe(gulp.dest(bases.examples + 'cycle/scripts/'))
+        .pipe(gulp.dest(bases.examples + 'fullwidth/scripts/'))
+        .pipe(gulp.dest(bases.examples + 'responsive/scripts/'))
+        .pipe(gulp.dest(bases.examples + 'main/scripts/'))
+        .pipe(gulp.dest(bases.examples + 'vertical/scripts/'));
 });
 
 // Run the tests
-gulp.task('test', function() {
-    gulp.src('test/test.js')
+gulp.task('test', ['clean', 'coffee', 'uglify', 'copy'], function() {
+    return gulp.src('test/test.js')
         .pipe(mocha({reporter: 'nyan'}));
 });
 
