@@ -89,7 +89,7 @@ class window.Ocarousel
                 children2 = $(@ocarousel_window).children().clone()
                 $(@ocarousel_window).append(children)
                 $(@ocarousel_window).append(children2)
-                @frames = $(@ocarousel_window).children()
+                @frames = $(@ocarousel_window).children().clone()
 
                 # Start at the middle copy of children
                 @active = @frames.length / 3

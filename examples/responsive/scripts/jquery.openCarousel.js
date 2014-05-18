@@ -100,7 +100,7 @@ Include jquery.openCarousel.js and jquery.openCarousel.css in your projects
           children2 = $(this.ocarousel_window).children().clone();
           $(this.ocarousel_window).append(children);
           $(this.ocarousel_window).append(children2);
-          this.frames = $(this.ocarousel_window).children();
+          this.frames = $(this.ocarousel_window).children().clone();
           this.active = this.frames.length / 3;
         }
         this.ocarousel_container = document.createElement("div");
