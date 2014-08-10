@@ -152,7 +152,7 @@ Include jquery.openCarousel.js and jquery.openCarousel.css in your projects
           end = 2 * this.frames.length / 3 - 1;
           length = this.frames.length / 3;
         }
-        svgWidth = this.settings.indicator_r * 2 * length + this.settings.indicator_spacing * length;
+        svgWidth = this.settings.indicator_r * 2 * length + this.settings.indicator_spacing * length + 1;
         indicators_parent.setAttribute("width", svgWidth + "px");
         cx = this.settings.indicator_r + this.settings.indicator_spacing;
         for (i = _i = start; start <= end ? _i <= end : _i >= end; i = start <= end ? ++_i : --_i) {
